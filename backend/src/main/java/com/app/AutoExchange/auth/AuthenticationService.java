@@ -5,7 +5,6 @@ import com.app.AutoExchange.user.Role;
 import com.app.AutoExchange.user.User;
 import com.app.AutoExchange.user.UserRepository;
 import lombok.AllArgsConstructor;
-import lombok.var;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
