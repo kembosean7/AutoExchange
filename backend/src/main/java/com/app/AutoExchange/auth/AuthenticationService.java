@@ -60,9 +60,11 @@ public class AuthenticationService {
 
         var user = repository.findByEmail(request.getEmail()).orElseThrow();
         var accessToken = jwtService.generateToken(user);
+        var refreshToken = jwtService.generateRefreshToken(user);
 
         return AuthenticationResponse.builder()
                 .accessToken(accessToken)
+                .refreshToken(refreshToken)
                 .build();
 
     }
