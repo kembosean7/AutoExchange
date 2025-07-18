@@ -1,5 +1,6 @@
 package com.app.AutoExchange.auth;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,7 @@ public class AuthenticationController {
     final private AuthenticationService service;
 
     @PostMapping("/signup")
-    public ResponseEntity<AuthenticationResponse> signup(
+    public ResponseEntity<AuthenticationResponse> signup(@Valid
             @RequestBody RegisterRequest request){
 
         return ResponseEntity.ok(service.signup(request));
@@ -24,7 +25,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(
+    public ResponseEntity<AuthenticationResponse> authenticate(@Valid
             @RequestBody AuthenticationRequest request){
 
         return ResponseEntity.ok(service.authenticate(request));
