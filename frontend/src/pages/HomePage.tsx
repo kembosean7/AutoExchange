@@ -4,6 +4,11 @@ import React, { useState } from "react";
 import { FuelIcon } from "@/models/FuelIcon";
 import { ArrowRightIcon } from "@/models/ArrowRightIcon";
 import { StarIcon } from "@/models/StarIcon";
+import { whyUs } from "@/models/whyUs";
+import { carTypes } from "@/models/BrowseByCarTypes";
+import { latestBlogs } from "@/models/LatestBlogs";
+import { testimonials } from "@/models/testimonials";
+import { carCards } from "@/models/exploreCars";
 
 
 
@@ -233,6 +238,58 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
+
+            <div className="grid lg:grid-cols-2 gap-8 mb-12">
+              {carCards.map((car) => (
+                <div key={car.title} className="bg-gray-800 rounded-2xl overflow-hidden">
+                  <div className="flex flex-col md:flex-row">
+                    <div className="w-full md:w-80 h-48 md:h-72">
+                      <img
+                        src={car.image}
+                        alt={car.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="flex-1 p-6 md:p-8 text-white">
+                      <div className="flex justify-between items-start mb-4">
+                        <div>
+                          <h3 className="text-xl font-medium mb-2">{car.title}</h3>
+                          <p className="text-sm opacity-75">{car.description}</p>
+                        </div>
+                        <button className="bg-white/10 hover:bg-white/20 rounded-full p-3 transition-colors">
+                          <StarIcon />
+                        </button>
+                      </div>
+
+                      <div className="grid grid-cols-3 gap-4 mb-6 text-sm">
+                        <div>
+                          <div className="opacity-75">Mileage</div>
+                          <div>{car.mileage}</div>
+                        </div>
+                        <div>
+                          <div className="opacity-75">Fuel</div>
+                          <div>{car.fuel}</div>
+                        </div>
+                        <div>
+                          <div className="opacity-75">Transmission</div>
+                          <div>{car.transmission}</div>
+                        </div>
+                      </div>
+
+                      <div className="flex justify-between items-center">
+                        <div className="text-2xl font-bold">{car.price}</div>
+                        <button className="flex items-center gap-2 text-white hover:text-brand-blue transition-colors">
+                          View Details
+                          <ArrowRightIcon />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            
           </div>
 
           {/* Navigation Arrows */}
@@ -264,32 +321,7 @@ const HomePage = () => {
             Why Choose Us?
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                title: "Special Financing Offers",
-                description:
-                  "Our stress-free finance department that can find financial solutions to save you money.",
-                icon: "💳",
-              },
-              {
-                title: "Trusted Car Dealership",
-                description:
-                  "Our stress-free finance department that can find financial solutions to save you money.",
-                icon: "🛡️",
-              },
-              {
-                title: "Transparent Pricing",
-                description:
-                  "Our stress-free finance department that can find financial solutions to save you money.",
-                icon: "💎",
-              },
-              {
-                title: "Expert Car Service",
-                description:
-                  "Our stress-free finance department that can find financial solutions to save you money.",
-                icon: "🔧",
-              },
-            ].map((feature, index) => (
+            {whyUs.map((feature, index) => (
               <div key={index} className="text-center">
                 <div className="text-5xl mb-6">{feature.icon}</div>
                 <h3 className="text-xl font-medium text-brand-dark mb-4">
@@ -308,74 +340,35 @@ const HomePage = () => {
       <section className="bg-white py-20">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-16">
-            <h2 className="text-4xl font-bold text-brand-dark">
-              Browse by Type
-            </h2>
+            <h2 className="text-4xl font-bold text-brand-dark">Browse by Type</h2>
             <button className="flex items-center gap-2 text-brand-dark font-medium hover:text-brand-blue transition-colors">
               View All
               <ArrowRightIcon />
             </button>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="relative rounded-2xl overflow-hidden h-96 group cursor-pointer">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/4217251c4d9b8a5248c8eea973db5a580708afcd?width=1370"
-                alt="SUV"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute bottom-8 left-8">
-                <div className="bg-white rounded-full px-6 py-3 flex items-center gap-3">
-                  <span className="text-2xl">🚗</span>
-                  <span className="font-medium text-brand-dark">SUV</span>
+          {[0, 2].map((startIndex) => (
+            <div key={startIndex} className={`grid md:grid-cols-2 gap-8 ${startIndex === 2 ? "mt-8" : ""}`}>
+              {carTypes.slice(startIndex, startIndex + 2).map((car) => (
+                <div
+                  key={car.label}
+                  className="relative rounded-2xl overflow-hidden h-96 group cursor-pointer"
+                >
+                  <img
+                    src={car.image}
+                    alt={car.label}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute bottom-8 left-8">
+                    <div className="bg-white rounded-full px-6 py-3 flex items-center gap-3">
+                      <span className="text-2xl">{car.icon}</span>
+                      <span className="font-medium text-brand-dark">{car.label}</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-
-            <div className="relative rounded-2xl overflow-hidden h-96 group cursor-pointer">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/31cda6b9b7fbeb99dc94a5df052bf50fbd7560d0?width=1370"
-                alt="Sedan"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute bottom-8 left-8">
-                <div className="bg-white rounded-full px-6 py-3 flex items-center gap-3">
-                  <span className="text-2xl">🚙</span>
-                  <span className="font-medium text-brand-dark">Sedan</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 mt-8">
-            <div className="relative rounded-2xl overflow-hidden h-96 group cursor-pointer">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/249bec6527ed8f586acd02557f8fd9b3fda278f3?width=893"
-                alt="Hatchback"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute bottom-8 left-8">
-                <div className="bg-white rounded-full px-6 py-3 flex items-center gap-3">
-                  <span className="text-2xl">🚘</span>
-                  <span className="font-medium text-brand-dark">Hatchback</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative rounded-2xl overflow-hidden h-96 group cursor-pointer">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/e286292732e23ca14c0899d79cf2ccb5ede5df59?width=893"
-                alt="Hybrid"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute bottom-8 left-8">
-                <div className="bg-white rounded-full px-6 py-3 flex items-center gap-3">
-                  <span className="text-2xl">⚡</span>
-                  <span className="font-medium text-brand-dark">Hybrid</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -484,36 +477,7 @@ const HomePage = () => {
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {[
-              {
-                name: "Ali Tufan",
-                title: "Sales process was simple and easy",
-                review:
-                  "Sales process was simple and easy. Maximillion was friendly and I didn't feel...",
-                rating: 5,
-              },
-              {
-                name: "John Doe",
-                title: "Good job for project",
-                review:
-                  "Sales process was simple and easy. Maximillion was friendly and I didn't feel...",
-                rating: 4,
-              },
-              {
-                name: "Brooklyn Simmons",
-                title: "Sales process was simple and easy",
-                review:
-                  "At Voiture what matters to us is making your car search and buying .",
-                rating: 2,
-              },
-              {
-                name: "Augusta Silva",
-                title: "Good job for project",
-                review:
-                  "Sales process was simple and easy. Maximillion was friendly and I didn't feel...",
-                rating: 5,
-              },
-            ].map((testimonial, index) => (
+            {testimonials.map((testimonial, index) => (
               <div key={index} className="bg-brand-section p-6 rounded-2xl">
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex gap-1">
@@ -618,33 +582,7 @@ const HomePage = () => {
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                image:
-                  "https://api.builder.io/api/v1/image/assets/TEMP/27b77a83a860a8a41aef20258bb9827a81758ec3?width=894",
-                category: "Sound",
-                title:
-                  "2024 BMW ALPINA XB7 with exclusive details, extraordinary",
-                author: "admin",
-                date: "November 22, 2023",
-              },
-              {
-                image:
-                  "https://api.builder.io/api/v1/image/assets/TEMP/b12daaceb4211ae5d2d369d0d95e3fd54537e2e3?width=894",
-                category: "Accessories",
-                title: "BMW X6 M50i is designed to exceed your sportiest.",
-                author: "admin",
-                date: "November 22, 2023",
-              },
-              {
-                image:
-                  "https://api.builder.io/api/v1/image/assets/TEMP/e197123f030a68545c82381248ddb79c5c2964a4?width=894",
-                category: "Exterior",
-                title: "BMW X5 Gold 2024 Sport Review: Light on Sport",
-                author: "admin",
-                date: "November 22, 2023",
-              },
-            ].map((post, index) => (
+            {latestBlogs.map((post, index) => (
               <article key={index} className="group cursor-pointer">
                 <div className="relative rounded-2xl overflow-hidden mb-4">
                   <img
