@@ -1,4 +1,0 @@
-
-login sign up page
-guard
-search bar with suggestions
