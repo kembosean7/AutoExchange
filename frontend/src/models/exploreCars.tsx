@@ -19,4 +19,15 @@ export const carCards = [
     transmission: "Automatic",
     price: "$150,000",
   },
+
+    {
+    title: "C-Class – 2023",
+    description: "4.0 D5 PowerPulse Momentum 5dr AWD… Geartronic Estate",
+    image:
+      "https://api.builder.io/api/v1/image/assets/TEMP/bdfb1f15cf5774ccd56aa9ba0ed75881d3d1b08e?width=637",
+    mileage: "50 Miles",
+    fuel: "Diesel",
+    transmission: "Automatic",
+    price: "$100,000",
+  },
 ];
