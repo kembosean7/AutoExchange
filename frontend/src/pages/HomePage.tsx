@@ -10,6 +10,8 @@ import { latestBlogs } from "@/models/LatestBlogs";
 import { testimonials } from "@/models/testimonials";
 import { carCards } from "@/models/exploreCars";
 
+import SearchBar from '../components/SearchBar'
+
 
 
 const HomePage = () => {
