@@ -79,6 +79,35 @@ public class AuthenticationService {
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
+
     }
 
+    public VerificationResponse verifyAccount(String token) {
+        Optional<User> optionalUser = repository.findByVerificationToken(token);
+
+        if(optionalUser.isEmpty()){
+            throw new RuntimeException("Invalid verification token");
+        }
+
+        User user = optionalUser.get();
+
+        if (user.getTokenExpiryDate().isBefore(LocalDateTime.now())){
+            throw new RuntimeException("Verification token expired");
+        }
+
+        user.setEnabled(true);
+        user.setVerificationToken(null);
+        user.setTokenExpiryDate(null);
+
+        repository.save(user);
+
+        VerificationResponse response = VerificationResponse.builder()
+                .msg("Account verified successfully")
+                .status("success")
+                .timestamp(LocalDateTime.now())
+                .build();
+
+
+        return response;
+    }
 }
