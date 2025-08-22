@@ -11,7 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -22,6 +24,7 @@ public class AuthenticationService {
     private final UserDetailsService userDetailsService;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final AuthEmailService emailService;
 
     public AuthenticationResponse signup(RegisterRequest request) {
 
@@ -38,7 +41,17 @@ public class AuthenticationService {
                 .role(Role.USER)
                 .build();
 
+
+        String token = UUID.randomUUID().toString();
+        user.setVerificationToken(token);
+        user.setTokenExpiryDate(LocalDateTime.now().plusMinutes(20));
+        user.setEnabled(false);
+
         repository.save(user);
+
+        emailService.sendVerificationCode(user.getEmail(), token);
+
+
 
         var accessToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
@@ -66,6 +79,6 @@ public class AuthenticationService {
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
-
     }
+
 }
