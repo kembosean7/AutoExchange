@@ -72,6 +72,10 @@ public class AuthenticationService {
         );
 
         var user = repository.findByEmail(request.getEmail()).orElseThrow();
+        if(user.isEnabled()){
+            throw new RuntimeException("Please verify your email before logging in");
+
+        }
         var accessToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
 
