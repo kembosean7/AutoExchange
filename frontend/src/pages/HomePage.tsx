@@ -33,7 +33,7 @@ const HomePage = () => {
         }}
       >
 
-        {/* <SearchBar/> */}
+        <SearchBar/>
         <div className="container mx-auto px-4 min-h-screen flex items-center py-20">
           <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start w-full max-w-7xl gap-8">
             {/* Hero Content */}
