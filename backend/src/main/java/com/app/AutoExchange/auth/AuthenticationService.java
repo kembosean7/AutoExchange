@@ -49,7 +49,7 @@ public class AuthenticationService {
 
         repository.save(user);
 
-        emailService.sendVerificationCode(user.getEmail(), token);
+//        emailService.sendVerificationCode(user.getEmail(), token);
 
 
 
@@ -65,17 +65,19 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
+        var user = repository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+
+        if (!user.isEnabled()) {
+            throw new RuntimeException("Please verify your email before logging in");
+        }
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
                         request.getPassword())
         );
-
-        var user = repository.findByEmail(request.getEmail()).orElseThrow();
-        if(user.isEnabled()){
-            throw new RuntimeException("Please verify your email before logging in");
-
-        }
         var accessToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
 
