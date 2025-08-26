@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 export default function SearchBar({
 
 
-  placeholder = "Search Mockups, Logos, Design Templates...",
+  placeholder = "Find your next joy-ride",
   onSearch,
   onVoiceResult,
 }) {
@@ -51,32 +51,10 @@ export default function SearchBar({
         Search
       </label>
 
-      {/* Input (with left icon + mic inside) */}
       <div className="relative flex-1">
-        {/* Left icon */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
-          {/* simple 'spark/sun' icon */}
-          <svg
-            className="h-5 w-5 text-gray-400"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M12 6V4M12 20v-2M6 12H4M20 12h-2M5.64 5.64l-1.4-1.4M19.78 19.78l-1.4-1.4M5.64 18.36l-1.4 1.4M19.78 4.22l-1.4 1.4"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <circle
-              cx="12"
-              cy="12"
-              r="3.5"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-          </svg>
-        </div>
+        {/* <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+
+        </div> */}
 
         <input
           id="search"
