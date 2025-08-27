@@ -45,6 +45,24 @@ const Navigation = () => {
             >
               Contact
             </Link>
+
+            <Link to="/contact" className="inline-flex items-center gap-2 text-brand-dark hover:text-brand-blue transition-colors">
+              
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+            </svg>
+              Search
+            </Link>
           </div>
 
           {/* CTA Button */}
