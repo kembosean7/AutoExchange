@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from "./Modal";
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -46,7 +47,7 @@ const Navigation = () => {
               Contact
             </Link>
 
-            <Link to="/contact" className="inline-flex items-center gap-2 text-brand-dark hover:text-brand-blue transition-colors">
+            <div className="inline-flex items-center gap-2 text-brand-dark hover:text-brand-blue transition-colors" onClick={()=><Modal opening={true}/>} style={{"cursor":"grabbing"}}>
               
               <svg
                 className="h-4 w-4"
@@ -62,7 +63,7 @@ const Navigation = () => {
                 />
             </svg>
               Search
-            </Link>
+            </div>
           </div>
 
           {/* CTA Button */}

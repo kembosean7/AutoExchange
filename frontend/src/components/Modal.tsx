@@ -1,10 +1,24 @@
 import React, {useState} from 'react'
 
-const Modal = () => {
+import SearchBar from './SearchBar'
 
-    const [open, setOpen] = useState(true);
+const Modal = ({opening}) => {
+
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+      setOpen(opening);
+    }
+
+    const handleClose = () => {
+      setOpen(false);
+    }
+
   return (
-    <div>Modal</div>
+    <div className='relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96'>
+      <span onClick={handleClose}>X</span>
+      <SearchBar />
+    </div>
   )
 }
 
