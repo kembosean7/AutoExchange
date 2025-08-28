@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 export default function SearchBar({
 
 
-  placeholder = "Find your next joy-ride",
+  placeholder = "Search cars ...",
   onSearch,
   onVoiceResult,
 }) {
