@@ -117,7 +117,7 @@ export default function SearchBar({
             strokeLinecap="round"
           />
         </svg>
-        <span>Search</span>
+        {/* <span>Search</span> */}
       </button>
     </form>
 
