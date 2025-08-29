@@ -1,16 +1,20 @@
 package com.app.AutoExchange.auth;
 
 import com.app.AutoExchange.config.JwtService;
+import com.app.AutoExchange.exceptions.AccountNotVerifiedException;
+import com.app.AutoExchange.exceptions.EmailAlreadyExistsException;
+import com.app.AutoExchange.exceptions.InvalidVerificationTokenException;
+import com.app.AutoExchange.exceptions.VerificationTokenExpired;
 import com.app.AutoExchange.user.Role;
 import com.app.AutoExchange.user.User;
 import com.app.AutoExchange.user.UserRepository;
+import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
@@ -21,16 +25,15 @@ public class AuthenticationService {
 
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
-    private final UserDetailsService userDetailsService;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final AuthEmailService emailService;
 
-    public AuthenticationResponse signup(RegisterRequest request) {
+    public AuthenticationResponse signup(RegisterRequest request) throws MessagingException, IOException {
 
         Optional<User> existingUser = repository.findByEmail(request.getEmail());
         if(existingUser.isPresent()){
-            throw new RuntimeException("User with the same email already exist");
+            throw new EmailAlreadyExistsException("User with the same email already exist");
         }
 
         var user = User.builder()
@@ -42,14 +45,14 @@ public class AuthenticationService {
                 .build();
 
 
-        String token = UUID.randomUUID().toString();
+        String token = UUID.randomUUID().toString().replaceAll("[^0-9]", "").substring(0, 5);
         user.setVerificationToken(token);
         user.setTokenExpiryDate(LocalDateTime.now().plusMinutes(20));
         user.setEnabled(false);
 
         repository.save(user);
 
-//        emailService.sendVerificationCode(user.getEmail(), token);
+        emailService.sendVerificationCode(user.getEmail(), token);
 
 
 
@@ -73,7 +76,7 @@ public class AuthenticationService {
 
         var user = repository.findByEmail(request.getEmail()).orElseThrow();
         if(!user.isVerified()){
-            throw new RuntimeException("Please verify your email before logging in");
+            throw new AccountNotVerifiedException( "Please verify your email before logging in");
 
         }
         var accessToken = jwtService.generateToken(user);
@@ -90,13 +93,13 @@ public class AuthenticationService {
         Optional<User> optionalUser = repository.findByVerificationToken(token);
 
         if(optionalUser.isEmpty()){
-            throw new RuntimeException("Invalid verification token");
+            throw new InvalidVerificationTokenException("Invalid verification token");
         }
 
         User user = optionalUser.get();
 
         if (user.getTokenExpiryDate().isBefore(LocalDateTime.now())){
-            throw new RuntimeException("Verification token expired");
+            throw new VerificationTokenExpired("Verification token expired");
         }
 
         user.setEnabled(true);

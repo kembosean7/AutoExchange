@@ -1,14 +1,14 @@
 package com.app.AutoExchange.auth;
 
 import com.app.AutoExchange.user.User;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.io.IOException;
 
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -19,7 +19,7 @@ public class AuthenticationController {
 
     @PostMapping("/signup")
     public ResponseEntity<AuthenticationResponse> signup(@Valid
-            @RequestBody RegisterRequest request){
+            @RequestBody RegisterRequest request) throws MessagingException, IOException {
 
         AuthenticationResponse response = service.signup(request);
 
