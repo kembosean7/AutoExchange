@@ -19,7 +19,7 @@ const Modal: React.FC<Props> = ({ open, cancelFn, titleContent, content }) => {
           onClick={cancelFn}
           className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
         >
-          ✕
+          Close
         </button>
 
         {/* Title */}
