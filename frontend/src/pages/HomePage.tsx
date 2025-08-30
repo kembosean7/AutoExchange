@@ -170,19 +170,20 @@ const HomePage = () => {
           </div>
           <div className="relative mb-12">
           {/* Vehicle Cards */}
-            <div className="min-w-[20rem] md:min-w-[36rem] snap-start bg-gray-800 rounded-2xl overflow-hidden flex-shrink-0" ref={scrollRef}>
-
-            {/* Cards mapping */}
-
+          <div className="relative mb-12">
+            <div
+              ref={scrollRef}
+              className="flex gap-8 overflow-x-auto scroll-smooth pb-4 snap-x snap-mandatory scrollbar-hide"
+            >
               {carCards.map((car) => (
-                <div key={car.title} className="bg-gray-800 rounded-2xl overflow-hidden">
+                <div
+                  key={car.title}
+                  className="min-w-[20rem] md:min-w-[36rem] snap-start bg-gray-800 rounded-2xl overflow-hidden flex-shrink-0"
+                >
+                  {/* Card inner content - kept your original markup */}
                   <div className="flex flex-col md:flex-row">
                     <div className="w-full md:w-80 h-48 md:h-72">
-                      <img
-                        src={car.image}
-                        alt={car.title}
-                        className="w-full h-full object-cover"
-                      />
+                      <img src={car.image} alt={car.title} className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1 p-6 md:p-8 text-white">
                       <div className="flex justify-between items-start mb-4">
@@ -223,46 +224,65 @@ const HomePage = () => {
               ))}
             </div>
 
+            {/* Navigation Arrows (below the scroller) */}
+            <div className="flex gap-4 mt-6">
+              <button
+                onClick={() => scrollBy("left")}
+                disabled={!canScrollLeft}
+                aria-label="Scroll left"
+                className={`w-16 h-12 border border-brand-lightgray rounded-full flex items-center justify-center transition-colors ${
+                  !canScrollLeft ? "opacity-40 cursor-not-allowed" : "hover:bg-brand-lightgray"
+                }`}
+              >
+                {/* Left arrow */}
 
-          {/* Navigation Arrows */}
-          <div className="flex gap-4 mt-6">
-    <button
-      onClick={() => scrollBy("left")}
-      disabled={!canScrollLeft}
-      aria-label="Scroll left"
-      className={`w-16 h-12 border border-brand-lightgray rounded-full flex items-center justify-center transition-colors ${
-        !canScrollLeft ? "opacity-40 cursor-not-allowed" : "hover:bg-brand-lightgray"
-      }`}
-    >
-      {/* Left arrow */}
-      <svg className="w-4 h-4" viewBox="0 0 12 13" fill="none">
-        <path
-          d="M9.17652 6.91006L4.02083 12.0701C3.86096 12.2301 3.66779 12.3101 3.44131 12.3101C3.21484 12.3101 3.015 12.2301 2.84181 12.0701C2.66863 11.9101 2.58203 11.7101 2.58203 11.4701C2.58203 11.2301 2.67529 11.0301 2.8618 10.8701L7.41799 6.31006L2.8618 1.75006C2.67529 1.59006 2.58203 1.39006 2.58203 1.15006C2.58203 0.910059 2.66863 0.710059 2.84181 0.550059C3.015 0.390059 3.21484 0.310059 3.44131 0.310059C3.66779 0.310059 3.86096 0.390059 4.02083 0.550059L9.17652 5.71006C9.36303 5.87006 9.45628 6.07006 9.45628 6.31006C9.45628 6.55006 9.36303 6.75006 9.17652 6.91006Z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
+                                <svg className="w-4 h-4" viewBox="0 0 12 13" fill="none">
+                  <path
+                    d="M2.55859 6.31006C2.55859 6.07006 2.65193 5.87006 2.83859 5.71006L7.99859 0.550059C8.15859 0.390059 8.35193 0.310059 8.57859 0.310059C8.80526 0.310059 9.00526 0.390059 9.17859 0.550059C9.35193 0.710059 9.43859 0.910059 9.43859 1.15006C9.43859 1.39006 9.34526 1.59006 9.15859 1.75006L4.59859 6.31006L9.15859 10.8701C9.31859 11.0301 9.39859 11.2301 9.39859 11.4701C9.39859 11.7101 9.31859 11.9101 9.15859 12.0701C8.99859 12.2301 8.80526 12.3101 8.57859 12.3101C8.35193 12.3101 8.15859 12.2301 7.99859 12.0701L2.83859 6.91006C2.65193 6.75006 2.55859 6.55006 2.55859 6.31006Z"
+                    fill="currentColor"
+                  />
+                </svg>
 
-    <button
-      onClick={() => scrollBy("right")}
-      disabled={!canScrollRight}
-      aria-label="Scroll right"
-      className={`w-16 h-12 border border-brand-lightgray rounded-full flex items-center justify-center transition-colors ${
-        !canScrollRight ? "opacity-40 cursor-not-allowed" : "hover:bg-brand-lightgray"
-      }`}
-    >
-      {/* Right arrow */}
-      <svg className="w-4 h-4" viewBox="0 0 12 13" fill="none">
-        <path
-          d="M2.55859 6.31006C2.55859 6.07006 2.65193 5.87006 2.83859 5.71006L7.99859 0.550059C8.15859 0.390059 8.35193 0.310059 8.57859 0.310059C8.80526 0.310059 9.00526 0.390059 9.17859 0.550059C9.35193 0.710059 9.43859 0.910059 9.43859 1.15006C9.43859 1.39006 9.34526 1.59006 9.15859 1.75006L4.59859 6.31006L9.15859 10.8701C9.31859 11.0301 9.39859 11.2301 9.39859 11.4701C9.39859 11.7101 9.31859 11.9101 9.15859 12.0701C8.99859 12.2301 8.80526 12.3101 8.57859 12.3101C8.35193 12.3101 8.15859 12.2301 7.99859 12.0701L2.83859 6.91006C2.65193 6.75006 2.55859 6.55006 2.55859 6.31006Z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
-          </div>
+
+                {/* <svg className="w-4 h-4" viewBox="0 0 12 13" fill="none">
+                  <path
+                    d="M9.17652 6.91006L4.02083 12.0701C3.86096 12.2301 3.66779 12.3101 3.44131 12.3101C3.21484 12.3101 3.015 12.2301 2.84181 12.0701C2.66863 11.9101 2.58203 11.7101 2.58203 11.4701C2.58203 11.2301 2.67529 11.0301 2.8618 10.8701L7.41799 6.31006L2.8618 1.75006C2.67529 1.59006 2.58203 1.39006 2.58203 1.15006C2.58203 0.910059 2.66863 0.710059 2.84181 0.550059C3.015 0.390059 3.21484 0.310059 3.44131 0.310059C3.66779 0.310059 3.86096 0.390059 4.02083 0.550059L9.17652 5.71006C9.36303 5.87006 9.45628 6.07006 9.45628 6.31006C9.45628 6.55006 9.36303 6.75006 9.17652 6.91006Z"
+                    fill="currentColor"
+                  />
+                </svg> */}
+              </button>
+
+              <button
+                onClick={() => scrollBy("right")}
+                disabled={!canScrollRight}
+                aria-label="Scroll right"
+                className={`w-16 h-12 border border-brand-lightgray rounded-full flex items-center justify-center transition-colors ${
+                  !canScrollRight ? "opacity-40 cursor-not-allowed" : "hover:bg-brand-lightgray"
+                }`}
+              >
+                {/* Right arrow */}
+
+                                <svg className="w-4 h-4" viewBox="0 0 12 13" fill="none">
+                  <path
+                    d="M9.17652 6.91006L4.02083 12.0701C3.86096 12.2301 3.66779 12.3101 3.44131 12.3101C3.21484 12.3101 3.015 12.2301 2.84181 12.0701C2.66863 11.9101 2.58203 11.7101 2.58203 11.4701C2.58203 11.2301 2.67529 11.0301 2.8618 10.8701L7.41799 6.31006L2.8618 1.75006C2.67529 1.59006 2.58203 1.39006 2.58203 1.15006C2.58203 0.910059 2.66863 0.710059 2.84181 0.550059C3.015 0.390059 3.21484 0.310059 3.44131 0.310059C3.66779 0.310059 3.86096 0.390059 4.02083 0.550059L9.17652 5.71006C9.36303 5.87006 9.45628 6.07006 9.45628 6.31006C9.45628 6.55006 9.36303 6.75006 9.17652 6.91006Z"
+                    fill="currentColor"
+                  />
+                </svg>
+
+
+                {/* <svg className="w-4 h-4" viewBox="0 0 12 13" fill="none">
+                  <path
+                    d="M2.55859 6.31006C2.55859 6.07006 2.65193 5.87006 2.83859 5.71006L7.99859 0.550059C8.15859 0.390059 8.35193 0.310059 8.57859 0.310059C8.80526 0.310059 9.00526 0.390059 9.17859 0.550059C9.35193 0.710059 9.43859 0.910059 9.43859 1.15006C9.43859 1.39006 9.34526 1.59006 9.15859 1.75006L4.59859 6.31006L9.15859 10.8701C9.31859 11.0301 9.39859 11.2301 9.39859 11.4701C9.39859 11.7101 9.31859 11.9101 9.15859 12.0701C8.99859 12.2301 8.80526 12.3101 8.57859 12.3101C8.35193 12.3101 8.15859 12.2301 7.99859 12.0701L2.83859 6.91006C2.65193 6.75006 2.55859 6.55006 2.55859 6.31006Z"
+                    fill="currentColor"
+                  />
+                </svg> */}
+              </button>
+            </div>
+
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Why Choose Us Section */}
       <section className="bg-brand-section py-20">
