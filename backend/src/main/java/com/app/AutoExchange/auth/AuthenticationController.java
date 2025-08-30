@@ -41,4 +41,11 @@ public class AuthenticationController {
         return  ResponseEntity.ok(service.verifyAccount(token));
     }
 
+    @PostMapping("/resend-verification")
+    public ResponseEntity<VerificationResponse> resendVerificationToken(@RequestParam("email") String email ) throws MessagingException {
+
+        return ResponseEntity.ok(service.resendVerificationToken(email));
+    }
+
+
 }

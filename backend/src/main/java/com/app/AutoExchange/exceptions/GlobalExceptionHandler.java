@@ -80,4 +80,13 @@ public class GlobalExceptionHandler {
         errors.put("message", ex.getMessage());
         return new ResponseEntity<>(errors, HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(AccountAlreadyVerifiedException.class)
+    public ResponseEntity<Map<String, String>> handleVerifiedAccount(AccountAlreadyVerifiedException ex){
+        Map<String, String> response = new HashMap<>();
+        response.put("error", "AccountAlreadyVerified");
+        response.put("message", ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.OK);
+
+    }
 }

@@ -1,10 +1,7 @@
 package com.app.AutoExchange.auth;
 
 import com.app.AutoExchange.config.JwtService;
-import com.app.AutoExchange.exceptions.AccountNotVerifiedException;
-import com.app.AutoExchange.exceptions.EmailAlreadyExistsException;
-import com.app.AutoExchange.exceptions.InvalidVerificationTokenException;
-import com.app.AutoExchange.exceptions.VerificationTokenExpired;
+import com.app.AutoExchange.exceptions.*;
 import com.app.AutoExchange.user.Role;
 import com.app.AutoExchange.user.User;
 import com.app.AutoExchange.user.UserRepository;
@@ -12,6 +9,7 @@ import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
@@ -116,5 +114,34 @@ public class AuthenticationService {
 
 
         return response;
+    }
+
+    public VerificationResponse resendVerificationToken(String email) throws MessagingException {
+        Optional<User> optionalUser = repository.findByEmail(email);
+
+        if(optionalUser.isEmpty()){
+            throw new UsernameNotFoundException("User not found with the email");
+
+        }
+
+        User user =optionalUser.get();
+
+        if(user.isVerified()) throw new AccountAlreadyVerifiedException("Account is already verified");
+
+        String newToken = UUID.randomUUID().toString().replaceAll("[^0-9]", "").substring(0, 5);
+        user.setVerificationToken(newToken);
+        user.setTokenExpiryDate(LocalDateTime.now().plusMinutes(20));
+
+        repository.save(user);
+
+        emailService.sendVerificationCode(user.getEmail(), newToken);
+
+        return VerificationResponse.builder().msg(
+                "Verification code resent successfully")
+                .status("success")
+                .timestamp(LocalDateTime.now())
+                .build();
+
+
     }
 }
