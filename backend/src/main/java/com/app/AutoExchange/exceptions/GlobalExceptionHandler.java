@@ -70,15 +70,7 @@ public class GlobalExceptionHandler {
         response.put("error", "TokenExpired");
         response.put("message", ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.GONE);
-    }
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<Map<String, Object>> handleRuntimeException(RuntimeException ex) {
-        Map<String, Object> errors = new HashMap<>();
-        errors.put("status", HttpStatus.CONFLICT.value());
-        errors.put("error", "Conflict");
-        errors.put("message", ex.getMessage());
-        return new ResponseEntity<>(errors, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(AccountAlreadyVerifiedException.class)
@@ -88,5 +80,13 @@ public class GlobalExceptionHandler {
         response.put("message", ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.OK);
 
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleAccountNotFound(UsernameNotFoundException ex){
+        Map<String,String> response = new HashMap<>();
+        response.put("error", "UserEmailNotFound");
+        response.put("message",ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 }
