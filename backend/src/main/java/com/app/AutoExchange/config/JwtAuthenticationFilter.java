@@ -1,4 +1,4 @@
-package com.app.AutoExchange.security;
+package com.app.AutoExchange.config;
 
 import com.app.AutoExchange.service.JwtService;
 import jakarta.servlet.FilterChain;
