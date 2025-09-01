@@ -9,6 +9,8 @@ import Navigation from "./components/Navigation";
 import Index from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
 
+import LoginSignUp from "./pages/LoginSignUp";
+
 const queryClient = new QueryClient();
 
 // Placeholder component for unimplemented pages
@@ -57,6 +59,7 @@ const App = () => (
             path="/contact"
             element={<PlaceholderPage title="Contact Us" />}
           />
+          <Route path="/login" element={<LoginSignUp/>}/>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
