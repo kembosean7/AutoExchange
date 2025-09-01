@@ -1,4 +1,4 @@
-package com.app.AutoExchange.auth;
+package com.app.AutoExchange.dto.request;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;

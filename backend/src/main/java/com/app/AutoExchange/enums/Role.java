@@ -1,4 +1,4 @@
-package com.app.AutoExchange.user;
+package com.app.AutoExchange.enums;
 
 public enum Role {
     USER,

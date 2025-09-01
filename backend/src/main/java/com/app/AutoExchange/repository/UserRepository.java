@@ -1,5 +1,6 @@
-package com.app.AutoExchange.user;
+package com.app.AutoExchange.repository;
 
+import com.app.AutoExchange.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.app.AutoExchange.config;
+package com.app.AutoExchange.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

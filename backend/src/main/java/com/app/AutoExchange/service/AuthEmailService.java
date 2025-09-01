@@ -1,4 +1,4 @@
-package com.app.AutoExchange.auth;
+package com.app.AutoExchange.service;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;

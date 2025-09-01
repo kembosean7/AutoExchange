@@ -1,10 +1,13 @@
-package com.app.AutoExchange.auth;
+package com.app.AutoExchange.service;
 
-import com.app.AutoExchange.config.JwtService;
+import com.app.AutoExchange.dto.request.RegisterRequest;
+import com.app.AutoExchange.dto.response.VerificationResponse;
 import com.app.AutoExchange.exceptions.*;
-import com.app.AutoExchange.user.Role;
-import com.app.AutoExchange.user.User;
-import com.app.AutoExchange.user.UserRepository;
+import com.app.AutoExchange.enums.Role;
+import com.app.AutoExchange.entity.User;
+import com.app.AutoExchange.repository.UserRepository;
+import com.app.AutoExchange.dto.request.AuthenticationRequest;
+import com.app.AutoExchange.dto.response.AuthenticationResponse;
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
