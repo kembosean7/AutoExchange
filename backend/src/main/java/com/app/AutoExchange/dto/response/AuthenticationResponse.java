@@ -1,4 +1,4 @@
-package com.app.AutoExchange.auth;
+package com.app.AutoExchange.dto.response;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;

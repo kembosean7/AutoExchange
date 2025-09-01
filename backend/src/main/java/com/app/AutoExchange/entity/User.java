@@ -1,5 +1,6 @@
-package com.app.AutoExchange.user;
+package com.app.AutoExchange.entity;
 
+import com.app.AutoExchange.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

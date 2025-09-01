@@ -1,5 +1,6 @@
-package com.app.AutoExchange.config;
+package com.app.AutoExchange.security;
 
+import com.app.AutoExchange.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

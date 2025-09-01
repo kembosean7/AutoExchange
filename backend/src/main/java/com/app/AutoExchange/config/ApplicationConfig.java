@@ -1,6 +1,6 @@
 package com.app.AutoExchange.config;
 
-import com.app.AutoExchange.user.UserRepository;
+import com.app.AutoExchange.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
