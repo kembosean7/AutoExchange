@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Modal from "./Modal";
+
+import { CgProfile } from "react-icons/cg";
+import { PowerOffIcon } from "lucide-react";
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   return (
     <nav className="bg-white border-b border-brand-lightgray sticky top-0 z-50">
@@ -46,13 +51,20 @@ const Navigation = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
+          <div className="hidden md:block ">
             <Link
               to="/contact"
               className="bg-brand-blue text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
             >
               Get Started
             </Link>
+
+            <button
+              onClick={()=> navigate("/login")}
+              className="bg-transparent px-6 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <PowerOffIcon width={30} fill="white"/>
+            </button>
           </div>
 
           {/* Mobile menu button */}

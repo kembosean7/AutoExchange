@@ -110,6 +110,7 @@ export default function SearchBar({
           viewBox="0 0 20 20"
           fill="none"
           aria-hidden="true"
+          
         >
           <path
             d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
