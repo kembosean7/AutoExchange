@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
+// import login and sign up then render on call
+
 
 export default function SearchBar({
 
