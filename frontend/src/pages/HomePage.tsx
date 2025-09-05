@@ -168,6 +168,7 @@ const HomePage = () => {
               Used Cars
             </button>
           </div>
+          
           <div className="relative mb-12">
           {/* Vehicle Cards */}
           <div className="relative mb-12">
