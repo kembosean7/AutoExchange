@@ -9,7 +9,9 @@ const LoginSignUp = () => {
     const [activeTab, setActiveTab] = useState("in-stock");
 
     const changeToLogin = () => {}
-    const changeToSignUp = () => {}
+    const changeToSignUp = () => {
+      //
+    }
 
 
   return (
