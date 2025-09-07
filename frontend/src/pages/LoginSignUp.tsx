@@ -8,6 +8,9 @@ const LoginSignUp = () => {
     const [isLogin, setIsLogIn] = useState(false);
     const [activeTab, setActiveTab] = useState("in-stock");
 
+    const changeToLogin = () => {}
+    const changeToSignUp = () => {}
+
 
   return (
 
