@@ -1,5 +1,8 @@
 import React, {useState, useRef} from 'react';
 
+import Login from '../components/Login';
+import SiignUp from '../components/SignUp';
+
 const LoginSignUp = () => {
 
     const [isLogin, setIsLogIn] = useState(false);
