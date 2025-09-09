@@ -5,12 +5,15 @@ import SiignUp from '../components/SignUp';
 
 const LoginSignUp = () => {
 
-    const [isLogin, setIsLogIn] = useState(false);
+    const [isLogin, setIsLogIn] = useState("login");
     const [activeTab, setActiveTab] = useState("in-stock");
 
-    const changeToLogin = () => {}
+    const changeToLogin = () => {
+      setActiveTab("login");
+    }
     const changeToSignUp = () => {
       //
+      setIsLogIn("signup");
     }
 
 
