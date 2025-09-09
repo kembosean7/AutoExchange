@@ -96,6 +96,7 @@ const Navigation = () => {
               <Link to="/about" className="block px-3 py-2 text-brand-dark hover:text-brand-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
               <Link to="/blog" className="block px-3 py-2 text-brand-dark hover:text-brand-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
               <Link to="/contact" className="block px-3 py-2 text-brand-dark hover:text-brand-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
+              <Link to="/login" className="block px-3 py-2 text-brand-dark hover:text-brand-blue transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
 
               {/* Search button (mobile) */}
               <button
