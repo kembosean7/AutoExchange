@@ -19,34 +19,53 @@ import java.util.List;
 @Table(name = "vehicles")
 public class Vehicle {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(nullable = false, length = 200)
+    private String title;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "make_id", nullable = false)
     private VehicleMake make;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "model_id", nullable = false)
     private VehicleModel mode;
 
+    @Column(nullable = false)
     private Integer year;
 
-    private String string;
+    @Column(length = 50)
+    private String trim;
 
+    @Enumerated(EnumType.STRING)
     private BodyType bodyType;
 
+    @Enumerated(EnumType.STRING)
     private FuelType fuelType;
 
+    @Enumerated(EnumType.STRING)
     private TransmissionType transmissionType;
 
     private Integer numberOfDoors;
 
     private Integer seatingCapacity;
 
+    @Column(precision = 3, scale = 1)
     private BigDecimal engineSize;
 
+    @Column(length = 20)
     private Integer horsePower;
 
     private String driveType;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private VehicleCondition condition;
 
     private Integer mileage;
@@ -150,21 +169,3 @@ public class Vehicle {
         return status == VehicleStatus.ACTIVE;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
