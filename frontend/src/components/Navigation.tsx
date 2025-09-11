@@ -11,6 +11,8 @@ const Navigation = () => {
 
   const navigate = useNavigate();
 
+  
+
   return (
     <nav className="bg-white border-b border-brand-lightgray sticky top-0 z-50">
       <div className="container mx-auto px-4">

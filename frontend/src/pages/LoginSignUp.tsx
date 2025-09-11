@@ -16,6 +16,10 @@ const LoginSignUp = () => {
       setIsLogIn("signup");
     }
 
+    if (isLogin === "login"){
+      console.log("logging in"); 
+    }
+
 
   return (
 
