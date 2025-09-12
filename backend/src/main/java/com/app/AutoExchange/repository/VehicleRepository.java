@@ -18,9 +18,9 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
 
     Page<Vehicle> findByStatusOrderByCreatedAtDesc(VehicleStatus status, Pageable pageable);
 
-    Page<Vehicle> findBySellerAndStatusOrderByCreatedAtDesc(User seller, VehicleStatus status, Pageable pageable);
+    Page<Vehicle> findByUserAndStatusOrderByCreatedAtDesc(User user, VehicleStatus status, Pageable pageable);
 
-    List<Vehicle> findBySellerOrderByCreatedAtDesc(User seller);
+    List<Vehicle> findByUserOrderByCreatedAtDesc(User user);
 
     // Search and filter queries
     @Query("SELECT v FROM Vehicle v WHERE v.status = 'ACTIVE' AND " +
@@ -89,7 +89,7 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
     Object[] findPriceStatsByMakeAndModel(@Param("makeId") Long makeId, @Param("modelId") Long modelId);
 
     // Count queries
-    long countBySellerAndStatus(User seller, VehicleStatus status);
+    long countByUserAndStatus(User user, VehicleStatus status);
 
     long countByStatus(VehicleStatus status);
 
@@ -101,7 +101,7 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
     @Query("SELECT v FROM Vehicle v WHERE v.status = :status ORDER BY v.createdAt DESC")
     Page<Vehicle> findByStatusForAdmin(@Param("status") VehicleStatus status, Pageable pageable);
 
-    @Query("SELECT v FROM Vehicle v WHERE v.seller.id = :sellerId ORDER BY v.createdAt DESC")
+    @Query("SELECT v FROM Vehicle v WHERE v.user.id = :sellerId ORDER BY v.createdAt DESC")
     List<Vehicle> findAllBySellerId(@Param("sellerId") Integer sellerId);
 
 
