@@ -35,19 +35,17 @@ public class VehicleMake {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @OneToMany(mappedBy = "make", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<VehicleModel> models;
 
-    @OneToMany(mappedBy = "make", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @PrePersist
     protected void onCreate(){
         createdAt = LocalDateTime.now();
         updatedAt = LocalDateTime.now();
-
     }
 
+    @PreUpdate
     protected void onUpdate(){
         updatedAt = LocalDateTime.now();
     }
-
-
-
 }
