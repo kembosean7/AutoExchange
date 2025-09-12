@@ -5,7 +5,7 @@ const Login = () => {
     
     const [activeTab, setActiveTab] = useState("in-stock");
   return (
-    <div className='w-96 p-6 shadow-lg bg-white rounded-md border-2'>
+    <div className=''>
         <h1 className='text-3xl block text-center font-semibold'>Login</h1>
         <hr className='mt-3 '/>
 

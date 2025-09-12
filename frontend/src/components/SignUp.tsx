@@ -2,8 +2,8 @@ import React from 'react'
 
 const SignUp = () => {
   return (
-    <div className='w-96 p-6 shadow-lg bg-white rounded-md border-2'>
-        <h1 className='text-3xl block text-center font-semibold'>Login</h1>
+    <div className=''>
+        <h1 className='text-3xl block text-center font-semibold'>Sign up</h1>
         <hr className='mt-3 '/>
 
         <div className='mt-3'>
