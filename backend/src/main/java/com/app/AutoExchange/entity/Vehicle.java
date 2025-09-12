@@ -35,7 +35,7 @@ public class Vehicle {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "model_id", nullable = false)
-    private VehicleModel mode;
+    private VehicleModel model;
 
     @Column(nullable = false)
     private Integer year;
@@ -65,7 +65,7 @@ public class Vehicle {
     private String driveType;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "`condition`", nullable = false)
     private VehicleCondition condition;
 
     private Integer mileage;
