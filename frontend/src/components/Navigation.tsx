@@ -64,7 +64,7 @@ const Navigation = () => {
 
             <button
               onClick={()=> navigate("/login")}
-              className="bg-transparent px-6 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className="bg-transparent px-6 py-2 rounded-lg hover:bg-gray-100 transition-colors ml-4"
             >
               <User width={30} fill="white"/>
             </button>
