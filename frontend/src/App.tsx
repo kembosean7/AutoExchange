@@ -59,7 +59,7 @@ const App = () => (
             path="/contact"
             element={<PlaceholderPage title="Contact Us" />}
           />
-          <Route path="/login" element={<LoginSignUp/>}/>
+          <Route path="/login" element={<><Navigation/><LoginSignUp/></>}/>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
