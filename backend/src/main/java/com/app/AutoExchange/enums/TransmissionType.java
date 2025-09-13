@@ -10,6 +10,7 @@ public enum TransmissionType {
     MANUAL("Manual"),
     AUTOMATIC("Automatic"),
     CVT("CVT"),
+
     SEMI_AUTOMATIC("Semi-Automatic"),
     DUAL_CLUTCH("Dual Clutch");
 
