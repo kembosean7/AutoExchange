@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 
 import { CgProfile } from "react-icons/cg";
-import { PowerOffIcon } from "lucide-react";
+import { PowerOffIcon, User } from "lucide-react";
+
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -65,7 +66,7 @@ const Navigation = () => {
               onClick={()=> navigate("/login")}
               className="bg-transparent px-6 py-2 rounded-lg hover:bg-gray-100 transition-colors"
             >
-              <PowerOffIcon width={30} fill="white"/>
+              <User width={30} fill="white"/>
             </button>
           </div>
 
@@ -118,6 +119,13 @@ const Navigation = () => {
               >
                 Get Started
               </Link>
+
+              <button
+              onClick={()=> navigate("/login")}
+              className="block mx-3 mt-4 bg-transparent px-6 py-2 rounded-lg bg-gray-200 hover:bg-blue-100 w-full text-center"
+            >
+              <User width={30} fill="white" className="mx-auto"/>
+            </button>
             </div>
           </div>
         )}

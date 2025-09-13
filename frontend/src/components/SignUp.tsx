@@ -34,7 +34,7 @@ const SignUp = () => {
           </div>
 
           <div>
-            <a href='#' className='text-indigo-800 font-semibold'>Already have an account ?</a>
+            <a href='#' className='text-indigo-800 font-semibold'>Have an account ?</a>
           </div>
         </div>
 
@@ -42,7 +42,7 @@ const SignUp = () => {
 
 
         <div className='mt-5'>
-          <button className='border-2 border-blue-700 bg-blue-600 text-white py-1 px-5 w-full rounded-md hover:bg-transparent hover:text-black font-semibold' type='submit'>Login</button>
+          <button className='border-2 border-blue-700 bg-blue-600 text-white py-1 px-5 w-full rounded-md hover:bg-transparent hover:text-black font-semibold' type='submit'>Sign Up</button>
 
         </div>
 

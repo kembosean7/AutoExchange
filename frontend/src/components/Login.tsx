@@ -2,8 +2,6 @@ import React, {useState, useRef} from 'react';
 
 const Login = () => {
 
-    
-    const [activeTab, setActiveTab] = useState("in-stock");
   return (
     <div className=''>
         <h1 className='text-3xl block text-center font-semibold'>Login</h1>

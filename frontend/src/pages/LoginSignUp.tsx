@@ -10,7 +10,12 @@ const LoginSignUp = () => {
 
   return (
 
-    <div className='flex justify-center items-center h-screen '>
+    <div className='flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat ' 
+            
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://api.builder.io/api/v1/image/assets/TEMP/7209a9ddb4485ca6445a72170e8fec52a55d636e?width=3840')`,
+        }}
+    >
       <div className='w-150 p-6 shadow-lg bg-white rounded-md border-2 '>
 
         {isLogin == "login" ? <Login/> : <SiignUp/>}
