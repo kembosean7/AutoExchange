@@ -44,13 +44,11 @@ on:
         options:
           - development
           - production
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true' }}
       version:
         description: 'Version to deploy'
         required: true
         default: '1.0.0'
         type: string
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true' }}
 jobs:
   build:
     runs-on: windows-latest
