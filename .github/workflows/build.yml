@@ -1,31 +1,119 @@
+# pipeline for projec
+# react + vite frontent
+#built on windoews
+
 name: CI Build
 
 on:
   push:
+    branches: [ "main" ] 
+  pull_request:
     branches: [ "main" ]
-
+    types: [ "opened", "synchronize", "reopened" ]
+  workflow_dispatch:
+    inputs:
+      build-type:
+        description: 'Type of build'
+        required: true
+        default: 'development'
+        type: choice
+        options:
+          - development
+          - production
+      run-tests:
+        description: 'Run tests'
+        required: true
+        default: 'true'
+        type: boolean
+      notify:
+        description: 'Notify team'
+        required: false
+        default: 'false'
+        type: boolean
+      deploy:
+        description: 'Deploy after build'
+        required: false
+        default: 'false'
+        type: boolean
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - development
+          - production
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true' }}
+      version:
+        description: 'Version to deploy'
+        required: true
+        default: '1.0.0'
+        type: string
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true' }}
 jobs:
-  
   build:
-   
     runs-on: windows-latest
-    
-    
+    env:
+      NODE_ENV: ${{ github.event.inputs['build-type'] || 'development' }}
     steps:
-      
-      # - name: Checkout code
-      #   uses: actions/checkout@v4
-      
+      - name: Checkout code
+        uses: actions/checkout@v4
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20' 
       
-      
       - name: Install dependencies
         run: npm install
       
-      
       - name: Build project
-        run: npm run dev
+        run: npm run build
+      
+      - name: Run tests
+        if: ${{ github.event.inputs['run-tests'] == 'true' }}
+        run: npm test
+      
+      - name: Notify team
+        if: ${{ github.event.inputs['notify'] == 'true' }}
+        run: echo "Notifying team..."
+      
+      - name: Deploy application
+        if: ${{ github.event.inputs['deploy'] == 'true' }}
+        run: |
+          echo "Deploying version ${{ github.event.inputs['version'] }} to ${{ github.event.inputs['environment'] }} environment"
+          # Add your deployment script/commands here
+#  old version below
+
+# name: CI Build
+
+# on:
+#   push:
+#     branches: [ "main" ]
+
+# jobs:
+  
+#   build:
+   
+#     runs-on: windows-latest
+    
+    
+#     steps:
+      
+#       # - name: Checkout code
+#       #   uses: actions/checkout@v4
+      
+      
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: '20' 
+      
+      
+#       - name: Install dependencies
+#         run: npm install
+      
+      
+#       - name: Build project
+#         run: npm run dev
