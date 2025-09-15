@@ -35,7 +35,6 @@ on:
         required: false
         default: 'false'
         type: boolean
-        if: ${{ github.event_name == 'workflow_dispatch' }}
       environment:
         description: 'Deployment environment'
         required: true
@@ -74,11 +73,9 @@ jobs:
         run: npm test
       
       - name: Notify team
-        if: ${{ github.event.inputs['notify'] == 'true' }}
         run: echo "Notifying team..."
       
       - name: Deploy application
-        if: ${{ github.event.inputs['deploy'] == 'true' }}
         run: |
           echo "Deploying version ${{ github.event.inputs['version'] }} to ${{ github.event.inputs['environment'] }} environment"
           # Add your deployment script/commands here
