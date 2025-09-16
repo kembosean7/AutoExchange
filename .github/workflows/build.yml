@@ -79,36 +79,3 @@ jobs:
         run: |
           echo "Deploying version ${{ github.event.inputs['version'] }} to ${{ github.event.inputs['environment'] }} environment"
           # Add your deployment script/commands here
-#  old version below
-
-# name: CI Build
-
-# on:
-#   push:
-#     branches: [ "main" ]
-
-# jobs:
-  
-#   build:
-   
-#     runs-on: windows-latest
-    
-    
-#     steps:
-      
-#       # - name: Checkout code
-#       #   uses: actions/checkout@v4
-      
-      
-#       - name: Setup Node.js
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: '20' 
-      
-      
-#       - name: Install dependencies
-#         run: npm install
-      
-      
-#       - name: Build project
-#         run: npm run dev
