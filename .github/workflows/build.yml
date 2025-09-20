@@ -23,17 +23,17 @@ on:
       run-tests:
         description: 'Run tests'
         required: true
-        default: 'true'
+        default: true
         type: boolean
       notify:
         description: 'Notify team'
         required: false
-        default: 'false'
+        default: false
         type: boolean
       deploy:
         description: 'Deploy after build'
         required: false
-        default: 'false'
+        default: false
         type: boolean
       environment:
         description: 'Deployment environment'
