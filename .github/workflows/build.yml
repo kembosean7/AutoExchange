@@ -104,43 +104,43 @@ jobs:
     defaults:
       run:
         working-directory: ./backend
-      steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Setup JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: ${{env.JAVA_VERSION}}
-          distribution: 'temurin'
-          cache: maven
+    - name: Setup JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{env.JAVA_VERSION}}
+        distribution: 'temurin'
+        cache: maven
 
-      - name: Verify Java instalattion
-        run: |
-          java -version
-          javac -version
+    - name: Verify Java instalattion
+      run: |
+        java -version
+        javac -version
 
-      - name: Build with Maven
-        run: ./mvnw clean compile -DskipTests
+    - name: Build with Maven
+      run: ./mvnw clean compile -DskipTests
 
-      - name: Run tests
-        if: ${{ github.event.inputs['run-tests'] == 'true' }}
-        run: ./mvnw test
+    - name: Run tests
+      if: ${{ github.event.inputs['run-tests'] == 'true' }}
+      run: ./mvnw test
 
-      - name: Run Maven verify (integration tests)
-        if: ${{ github.event.inputs.run-tests == 'true' || github.event.inputs.run-tests == null }}
-        run: ./mvnw verify -DskipUnitTests=true
-        continue-on-error: true
+    - name: Run Maven verify (integration tests)
+      if: ${{ github.event.inputs.run-tests == 'true' || github.event.inputs.run-tests == null }}
+      run: ./mvnw verify -DskipUnitTests=true
+      continue-on-error: true
 
 
-      - name: Package application
-        run: ./mvnw clean package -DskipTests
-        env:
-          SPRING_PROFILES_ACTIVE: ${{ env.BUILD_TYPE }}        
+    - name: Package application
+      run: ./mvnw clean package -DskipTests
+      env:
+        SPRING_PROFILES_ACTIVE: ${{ env.BUILD_TYPE }}        
 
-      - name: Upload backend JAR artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: backend-jar
-          path: backend/target/*.jar
-          retention-days: 7          
+    - name: Upload backend JAR artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: backend-jar
+        path: backend/target/*.jar
+        retention-days: 7          
