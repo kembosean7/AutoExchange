@@ -30,11 +30,16 @@ on:
         required: false
         default: false
         type: boolean
-      deploy:
-        description: 'Deploy after build'
+      deploy-frontend:
+        description: 'Deploy frontend'
         required: false
         default: false
         type: boolean
+      deploy-backend:
+        description: 'Deploy backend'
+        required: false
+        default: false
+        type: boolean  
       environment:
         description: 'Deployment environment'
         required: true
@@ -46,16 +51,21 @@ on:
       version:
         description: 'Version to deploy'
         required: true
-        default: '1.0.0'
+        default: 'lastest'
         type: string
+
+env:
+  NODE_VERSION: '20'
+  JAVA_VERsion: '24'    
+  BUILD_TYPE: ${{ github.event.inputs.build-type || 'development' }}    
+
 jobs:
-  build:
+  frontend:
+    name: Frontend CI/CD
     runs-on: windows-latest
     defaults:
       run:
         working-directory: ./frontend
-    env:
-      NODE_ENV: ${{ github.event.inputs['build-type'] || 'development' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -63,15 +73,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' 
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
       
-      - name: Install dependencies
+      - name: Install frontend dependencies
         run: npm install
       
       - name: Build project
         run: npm run build
+        env: 
+          NODE_ENV: ${{ env.BUILD_TYPE }}
+
       
       - name: Run tests
         if: ${{ github.event.inputs['run-tests'] == 'true' }}
