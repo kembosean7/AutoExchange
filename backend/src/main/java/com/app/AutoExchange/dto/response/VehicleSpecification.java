@@ -3,22 +3,14 @@ package com.app.AutoExchange.dto.response;
 import com.app.AutoExchange.dto.request.VehicleSearchRequest;
 import com.app.AutoExchange.entity.Vehicle;
 import com.app.AutoExchange.enums.VehicleStatus;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.criteria.Predicate;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class VehicleSpecification {
+
     public static Specification<Vehicle> buildSpecification(VehicleSearchRequest searchRequest) {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
