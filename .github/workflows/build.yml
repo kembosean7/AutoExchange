@@ -56,7 +56,7 @@ on:
 
 env:
   NODE_VERSION: '20'
-  JAVA_VERsion: '24'    
+  JAVA_VERSION: '24'    
   BUILD_TYPE: ${{ github.event.inputs.build-type || 'development' }}    
 
 jobs:
@@ -97,3 +97,50 @@ jobs:
         run: |
           echo "Deploying version ${{ github.event.inputs['version'] }} to ${{ github.event.inputs['environment'] }} environment"
           # Add your deployment script/commands here
+  
+  backend:
+    name: Backend CI/CD
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./backend
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{env.JAVA_VERSION}}
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Verify Java instalattion
+        run: |
+          java -version
+          javac -version
+
+      - name: Build with Maven
+        run: ./mvnw clean compile -DskipTests
+
+      - name: Run tests
+        if: ${{ github.event.inputs['run-tests'] == 'true' }}
+        run: ./mvnw test
+
+      - name: Run Maven verify (integration tests)
+        if: ${{ github.event.inputs.run-tests == 'true' || github.event.inputs.run-tests == null }}
+        run: ./mvnw verify -DskipUnitTests=true
+        continue-on-error: true
+
+
+      - name: Package application
+        run: ./mvnw clean package -DskipTests
+        env:
+          SPRING_PROFILES_ACTIVE: ${{ env.BUILD_TYPE }}        
+
+      - name: Upload backend JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-jar
+          path: backend/target/*.jar
+          retention-days: 7          
