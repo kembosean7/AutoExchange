@@ -10,6 +10,7 @@ import Index from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
 
 import LoginSignUp from "./pages/LoginSignUp";
+import Inventory from "./pages/Inventory";
 
 const queryClient = new QueryClient();
 
@@ -51,7 +52,7 @@ const App = () => (
           />
           <Route
             path="/inventory"
-            element={<PlaceholderPage title="Vehicle Inventory" />}
+            element={<><Navigation/> <Inventory/> </>}
           />
           <Route path="/about" element={<PlaceholderPage title="About Us" />} />
           <Route path="/blog" element={<PlaceholderPage title="Blog" />} />
