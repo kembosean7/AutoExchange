@@ -53,6 +53,7 @@ public class VehicleResponse {
 
     // Pricing
     private BigDecimal price;
+    private BigDecimal originalPrice;
     private boolean isPriceNegotiable;
 
     // Features

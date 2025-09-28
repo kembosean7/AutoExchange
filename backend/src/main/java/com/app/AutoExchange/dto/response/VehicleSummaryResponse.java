@@ -2,7 +2,6 @@ package com.app.AutoExchange.dto.response;
 
 import com.app.AutoExchange.enums.FuelType;
 import com.app.AutoExchange.enums.VehicleCondition;
-import jdk.jfr.Name;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
