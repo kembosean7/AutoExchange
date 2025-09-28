@@ -23,7 +23,6 @@ public interface VehicleImageRepository extends JpaRepository<VehicleImage, Long
     List<VehicleImage> findByVehicleIdOrderByPrimaryAndDisplayOrder(@Param("vehicleId") Long vehicleId);
 
     long countByVehicle(Vehicle vehicle);
-
     long countByVehicleId(Long vehicleId);
 
     void deleteByVehicle(Vehicle vehicle);

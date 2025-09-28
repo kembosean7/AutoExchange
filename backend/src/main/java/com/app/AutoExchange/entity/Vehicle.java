@@ -70,7 +70,7 @@ public class Vehicle {
 
     private Integer mileage;
 
-    private Integer previousOwner = 1;
+    private Integer previousOwners = 1;
 
     private boolean hasAccidentHistory = false;
 
@@ -106,7 +106,7 @@ public class Vehicle {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seller_id", nullable = false)
-    private User user;
+    private User seller;
 
     @Column(length = 20)
     private String sellerPhone;

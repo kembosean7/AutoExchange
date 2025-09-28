@@ -7,11 +7,13 @@ import com.app.AutoExchange.enums.VehicleCondition;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,7 +30,7 @@ public class VehicleCreateRequest {
     private Long makeId;
 
     @NotNull(message = "Model ID is required")
-    private Long modeId;
+    private Long modelId;
 
     @NotNull(message = "Year is required")
     @Min(value = 1990, message = "Year must be 1900 or later")
@@ -49,7 +51,7 @@ public class VehicleCreateRequest {
 
     @Min(value = 2, message = "Number of doors must be a least 2")
     @Max(value = 5, message = "Number of doormust not exceed 5")
-    private Integer numberfDoors;
+    private Integer numberOfDoors;
 
     @Min(value = 1, message = "Seating capacity must be at least 1")
     @Max(value = 50, message = "Seating capacity must not exceed 50")
