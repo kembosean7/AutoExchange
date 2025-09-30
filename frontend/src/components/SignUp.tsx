@@ -8,22 +8,27 @@ const SignUp = () => {
 
         <div className='mt-3'>
           <label htmlFor="email" className='block text-base mb-2'>Email</label>
-          <input type="email" id='email'  className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='enter email'/>
+          <input type="email" id='email'  className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='Enter email ' required/>
         </div>
 
         <div className='mt-3'>
-          <label htmlFor="username" className='block text-base mb-2'>Name and Surname</label> 
-          <input type="text" id='username'  className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='enter name and surname'/>
+          <label htmlFor="firstName" className='block text-base mb-2'>First Name</label> 
+          <input type="text" id='firstName'  className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='Enter first name' required/>
+        </div>
+
+        <div className='mt-3'>
+          <label htmlFor="LastName" className='block text-base mb-2'>Last Name</label> 
+          <input type="text" id='lastName'  className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='Enter last name ' required/>
         </div>
 
         <div className='mt-3'>
           <label htmlFor="password" className='block text-base mb-2'>password</label>
-          <input type="passwotd" id='password'  className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='enter password'/>
+          <input type="passwotd" id='password'  className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='Enter password' required/>
         </div>
 
         <div className='mt-3'>
           <label htmlFor="confirm-password" className='block text-base mb-2'>Confirm password</label>
-          <input type="password" id='confirm-password'  className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='enter password'/>
+          <input type="password" id='confirm-password'  className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='Confirm password' required/>
         </div>
 
 
