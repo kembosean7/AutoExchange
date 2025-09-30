@@ -56,7 +56,7 @@ const SignUp = () => {
 
         <div className='mt-3'>
           <label htmlFor="confirm-password" className='block text-base mb-2'>Confirm password</label>
-          <input type="password" id='confirm-password' name='confirmPassword' value={form.confirmPassword} className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='Confirm password' required/>
+          <input type="password" id='confirm-password' name='confirmPassword' value={form.confirmPassword} onChange={handleChange} className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='Confirm password' required/>
         </div>
 
       {error && <div className='mt-3 text-red-600'>{error}</div>}
