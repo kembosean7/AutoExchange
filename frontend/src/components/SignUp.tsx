@@ -25,6 +25,26 @@ const SignUp = () => {
       setError('Passwords do not match')
       return;
     }
+    try {
+      const res = await fetch('api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+
+      });
+      
+      if(!res.ok){
+        const data = await res.json();
+        setError(data.message || 'Signup failed');
+      }
+      else{
+        setSuccess('Signup successful!');
+        setForm({ firstName: '', lastName: '', email: '', password: '', confirmPassword: '' });
+      }
+      
+    } catch (error) {
+      setError('Network error');
+    }
   };
     
 
