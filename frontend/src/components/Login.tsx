@@ -8,13 +8,13 @@ const Login = () => {
         <hr className='mt-3 '/>
 
         <div className='mt-3'>
-          <label htmlFor="username" className='block text-base mb-2'>username</label>
-          <input type="text" id='username'  className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='enter username'/>
+          <label htmlFor="email" className='block text-base mb-2'>Email</label>
+          <input type="text" id='email'  className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='Enter email'/>
         </div>
 
         <div className='mt-3'>
-          <label htmlFor="password" className='block text-base mb-2'>password</label>
-          <input type="passwotd" id='password'  className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='enter password'/>
+          <label htmlFor="password" className='block text-base mb-2'>Password</label>
+          <input type="passwotd" id='password'  className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' placeholder='Enter password'/>
         </div>
 
 
