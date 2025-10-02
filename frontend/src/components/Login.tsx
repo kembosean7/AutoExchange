@@ -1,4 +1,6 @@
+import { join } from 'path';
 import React, {useState, useRef} from 'react';
+import { json } from 'stream/consumers';
 
 const Login = () => {
 
@@ -20,6 +22,25 @@ const Login = () => {
     setError('');
     setSucess('');
     setIsSubmitting(true);
+
+    try{
+      const res = await fetch('http://localhost:8080/api/v1/auth/authenticate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(form)
+      });
+
+      if(!res.ok){
+        const data = await res.json();
+        setError(data.message || 'Login failed')
+
+      }else{
+        setSucess('Login Sucessfull')
+        setForm({email: '', password: ''});
+      }
+    }catch(error){
+      setError('Network Error')
+    }
   };
   
 
