@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom'
 import SearchBar from '../components/SearchBar';
 
 
-/**
+/*
  * 
  * @returns Inventory Page
  * load cars from backend
