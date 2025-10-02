@@ -93,7 +93,7 @@ const SignUp = () => {
           <label htmlFor="remember"> Remember me?</label>
         </div>
         <div>
-          <a href='#' className='text-indigo-800 font-semibold'>Have an account?</a>
+          <a href='/login' className='text-indigo-800 font-semibold'>Have an account?</a>
         </div>
       </div>
 
