@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 
 import LoginSignUp from "./pages/LoginSignUp";
 import Inventory from "./pages/Inventory";
+import VerificationPage from "./pages/VerificationPage";
 
 const queryClient = new QueryClient();
 
@@ -61,6 +62,8 @@ const App = () => (
             element={<PlaceholderPage title="Contact Us" />}
           />
           <Route path="/login" element={<><Navigation/><LoginSignUp/></>}/>
+
+          <Route path="/verify" element={<><Navigation/><VerificationPage/></>}/>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
