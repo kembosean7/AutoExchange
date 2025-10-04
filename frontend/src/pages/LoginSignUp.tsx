@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 
 import Login from '../components/Login';
-import SiignUp from '../components/SignUp';
+import SignUp from '../components/SignUp';
 
 const LoginSignUp = () => {
 
@@ -18,7 +18,7 @@ const LoginSignUp = () => {
     >
       <div className='w-150 p-6 shadow-lg bg-white rounded-md border-2 '>
 
-        {isLogin == "login" ? <Login/> : <SiignUp/>}
+        {isLogin == "login" ? <Login/> : <SignUp/>}
 
         <hr className='mt-3 '/>
 

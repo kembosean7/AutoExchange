@@ -19,7 +19,8 @@ const VerificationPage: React.FC = () => {
     setLoading(true);
     try {
       const response = await axios.post('/api/verify', { code });
-      toast.success(response.data.message);
+      const message = (response.data as { message: string }).message;
+      toast.success(message);
       navigate('/dashboard');
     } catch (error) {
       toast.error('Verification failed');
