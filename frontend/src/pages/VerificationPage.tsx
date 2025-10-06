@@ -32,6 +32,7 @@ const VerificationPage: React.FC = () => {
     <div>
       <h1>Verify Your Account</h1>
       <input
+      className='border p-2 rounded align-middle'
         type="text"
         value={code}
         onChange={(e) => setCode(e.target.value)}
