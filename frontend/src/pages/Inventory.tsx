@@ -42,18 +42,16 @@ const Inventory = () => {
 
   return (
     <div>
-
-
       <div>
-              <section className="bg-white py-10">
-                <div className="container mx-auto px-4 md:px-4">
+              <section className="bg-white">
+                <div className="container">
                   <div className="flex justify-between items-center mb-16">
                     <h2 className="text-4xl font-bold text-brand-dark">
                       Find Your Next Dream Car
                     </h2>
 
                   </div>
-                  <div className="w-90 h-20 px-10 py-20 shadow-md ">
+                  <div className="w-90 h-20 px-5 py-20 shadow-md ">
                     <SearchBar />
                     {/* filter button */}
                     <button className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white px-4 py-2 rounded-md">
@@ -96,7 +94,7 @@ const Inventory = () => {
                   
                   <div className="relative mb-12">
                   {/* Vehicle Cards */}
-                  <div className="relative mb-12">
+                  <div className="">
 
                     {/* put two cards per row gap between 4 make a gap of 6 for cards below make cars slimmer with image on top and info below no horizontal scrolling */}
                     <div
@@ -106,7 +104,7 @@ const Inventory = () => {
                       {carCards.map((car) => (
                         <div
                           key={car.title}
-                          className="min-w-[8rem] md:min-w-[16rem] snap-start bg-gray-800 rounded-2xl overflow-hidden flex-shrink-0"
+                          className="min-w-[8rem] md:min-w-[16rem] snap-start bg-gray-800 rounded-2xl overflow-hidden flex-shrink-6"
                         >
                           <div className="flex flex-col md:flex-col">
                             <div className="w-30 md:w-50 h-58 md:h-72">
