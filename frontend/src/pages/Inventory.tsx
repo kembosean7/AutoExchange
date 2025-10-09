@@ -52,11 +52,19 @@ const Inventory = () => {
 
                   </div>
                   <div className="w-90 h-20 px-5 py-20 shadow-md ">
-                    <SearchBar />
-                    {/* filter button */}
-                    <button className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white px-4 py-2 rounded-md">
-                      Filter
-                    </button>
+                    <div className="justify-between flex">
+                      <SearchBar /> 
+                      <select className="ml-4">
+                        <option onClick={() => setCarFilter("most-relevant")} value="most-relevant">Most Relevant</option>
+                        <option onClick={() => setCarFilter("price-low-high")} value="price-low-high">Price: Low to High</option>
+                        <option onClick={() => setCarFilter("price-high-low")} value="price-high-low">Price: High to Low</option>
+                        <option onClick={() => setCarFilter("year-new-old")} value="year-new-old">Year: New to Old</option>
+                        <option onClick={() => setCarFilter("year-old-new")} value="year-old-new">Year: Old to New</option>
+                        <option onClick={() => setCarFilter("mileage-low-high")} value="mileage-low-high">Mileage: Low to High</option>
+                        <option onClick={() => setCarFilter("mileage-high-low")} value="mileage-high-low">Mileage: High to Low</option>
+                      </select>
+                    </div>
+
                   </div>
                   {/* Tabs */}
                   <div className="flex gap-8 border-b border-brand-lightgray mb-12">
