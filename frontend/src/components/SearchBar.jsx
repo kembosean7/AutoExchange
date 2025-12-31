@@ -4,8 +4,6 @@ import { useState, useRef, useEffect } from "react";
 
 
 export default function SearchBar({
-
-
   placeholder = "Search cars ...",
   onSearch,
   onVoiceResult,
@@ -46,6 +44,8 @@ export default function SearchBar({
     e.preventDefault();
     if (onSearch) onSearch(query);
   };
+
+  const filterSearch = () => {}
 
   return (
     <form onSubmit={handleSubmit} className="flex items-center gap-3">
