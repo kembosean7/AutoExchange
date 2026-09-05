@@ -1,0 +1,146 @@
+# pipeline for projec
+# react + vite frontent
+#built on windoews
+
+name: CI Build
+
+on:
+  push:
+    branches: [ "main" ] 
+  pull_request:
+    branches: [ "main" ]
+    types: [ "opened", "synchronize", "reopened" ]
+  workflow_dispatch:
+    inputs:
+      build-type:
+        description: 'Type of build'
+        required: true
+        default: 'development'
+        type: choice
+        options:
+          - development
+          - production
+      run-tests:
+        description: 'Run tests'
+        required: true
+        default: true
+        type: boolean
+      notify:
+        description: 'Notify team'
+        required: false
+        default: false
+        type: boolean
+      deploy-frontend:
+        description: 'Deploy frontend'
+        required: false
+        default: false
+        type: boolean
+      deploy-backend:
+        description: 'Deploy backend'
+        required: false
+        default: false
+        type: boolean  
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - development
+          - production
+      version:
+        description: 'Version to deploy'
+        required: true
+        default: 'lastest'
+        type: string
+
+env:
+  NODE_VERSION: '20'
+  JAVA_VERSION: '24'    
+  BUILD_TYPE: ${{ github.event.inputs.build-type || 'development' }}    
+
+jobs:
+  frontend:
+    name: Frontend CI/CD
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+      
+      - name: Install frontend dependencies
+        run: npm install
+      
+      - name: Build project
+        run: npm run build
+        env: 
+          NODE_ENV: ${{ env.BUILD_TYPE }}
+
+      
+      - name: Run tests
+        if: ${{ github.event.inputs['run-tests'] == 'true' }}
+        run: npm test
+      
+      - name: Notify team
+        run: echo "Notifying team..."
+      
+      - name: Deploy application
+        run: |
+          echo "Deploying version ${{ github.event.inputs['version'] }} to ${{ github.event.inputs['environment'] }} environment"
+          # Add your deployment script/commands here
+  
+  backend:
+    name: Backend CI/CD
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{env.JAVA_VERSION}}
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Verify Java instalattion
+      run: |
+        java -version
+        javac -version
+
+    - name: Build with Maven
+      run: ./mvnw clean compile -DskipTests
+
+    - name: Run tests
+      if: ${{ github.event.inputs['run-tests'] == 'true' }}
+      run: ./mvnw test
+
+    - name: Run Maven verify (integration tests)
+      if: ${{ github.event.inputs.run-tests == 'true' || github.event.inputs.run-tests == null }}
+      run: ./mvnw verify -DskipUnitTests=true
+      continue-on-error: true
+
+
+    - name: Package application
+      run: ./mvnw clean package -DskipTests
+      env:
+        SPRING_PROFILES_ACTIVE: ${{ env.BUILD_TYPE }}        
+
+    - name: Upload backend JAR artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: backend-jar
+        path: backend/target/*.jar
+        retention-days: 7          

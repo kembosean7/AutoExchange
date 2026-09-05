@@ -1,0 +1,716 @@
+import React, { useState } from "react";
+
+// Icons (using simple SVG icons instead of external icon library)
+const FuelIcon = () => (
+  <svg
+    className="w-5 h-5"
+    viewBox="0 0 30 37"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M34 21.83C34 26.0234 32.8667 29.7645 30.6 33.0534C30.3733 33.3823 30.0711 33.5673 29.6933 33.6084C29.3156 33.6495 28.9756 33.5467 28.6733 33.3C28.3711 33.0534 28.2011 32.745 28.1633 32.375C28.1256 32.005 28.22 31.6556 28.4467 31.3267C30.4111 28.5312 31.3933 25.3656 31.3933 21.83C31.3933 19.0345 30.7511 16.4445 29.4667 14.06C28.1822 11.6756 26.4256 9.78449 24.1967 8.38671C21.9678 6.98893 19.5689 6.29004 17 6.29004C14.4311 6.29004 12.0322 6.98893 9.80333 8.38671C7.57444 9.78449 5.81778 11.6756 4.53333 14.06C3.24889 16.4445 2.60667 19.0345 2.60667 21.83C2.60667 25.3656 3.58889 28.5312 5.55333 31.3267C5.78 31.6556 5.87444 32.005 5.83667 32.375C5.79889 32.745 5.62889 33.0534 5.32667 33.3C5.02444 33.5467 4.68444 33.6495 4.30667 33.6084C3.92889 33.5673 3.62667 33.3823 3.4 33.0534C1.13333 29.7645 0 26.0234 0 21.83C0 18.5412 0.755556 15.4784 2.26667 12.6417C3.77778 9.80504 5.83667 7.56449 8.44333 5.92004C11.05 4.2756 13.9022 3.45338 17 3.45338C20.0978 3.45338 22.95 4.2756 25.5567 5.92004C28.1633 7.56449 30.2222 9.80504 31.7333 12.6417C33.2444 15.4784 34 18.5412 34 21.83Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+const ArrowRightIcon = () => (
+  <svg
+    className="w-3.5 h-3.5"
+    viewBox="0 0 14 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M13.6111 0H5.05557C4.84061 0 4.66667 0.173943 4.66667 0.388901C4.66667 0.603859 4.84061 0.777802 5.05557 0.777802H12.6723L0.113941 13.3362C-0.0379804 13.4881 -0.0379804 13.7342 0.113941 13.8861C0.189884 13.962 0.289415 14 0.38891 14C0.488405 14 0.5879 13.962 0.663879 13.8861L13.2222 1.3277V8.94447C13.2222 9.15943 13.3961 9.33337 13.6111 9.33337C13.8261 9.33337 14 9.15943 14 8.94447V0.388901C14 0.173943 13.826 0 13.6111 0Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+const StarIcon = () => (
+  <svg
+    className="w-3 h-3"
+    viewBox="0 0 12 12"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M6 0L7.854 4.146L12 6L7.854 7.854L6 12L4.146 7.854L0 6L4.146 4.146L6 0Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+const HomePage = () => {
+  const [activeTab, setActiveTab] = useState("in-stock");
+  const [calculatorValues, setCalculatorValues] = useState({
+    price: "10000",
+    interestRate: "10",
+    loanTerm: "3",
+    downPayment: "5000",
+  });
+
+  return (
+    <div className="min-h-screen bg-white font-dm">
+      {/* Hero Section */}
+      <section
+        className="relative min-h-screen bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://api.builder.io/api/v1/image/assets/TEMP/7209a9ddb4485ca6445a72170e8fec52a55d636e?width=3840')`,
+        }}
+      >
+        <div className="container mx-auto px-4 min-h-screen flex items-center py-20">
+          <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start w-full max-w-7xl gap-8">
+            {/* Hero Content */}
+            <div className="text-white text-center lg:text-left max-w-lg">
+              <div className="text-2xl md:text-4xl font-bold mb-4">
+                $165,000
+              </div>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium leading-tight mb-8">
+                Ranger Black –<br />
+                2021
+              </h1>
+            </div>
+
+            {/* Vehicle Details Card */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 w-full max-w-sm lg:w-72 text-white">
+              {/* Fuel Type */}
+              <div className="mb-6">
+                <FuelIcon />
+                <div className="text-sm opacity-75 mt-2">Fuel Type</div>
+                <div className="text-lg md:text-xl font-medium">Petrol</div>
+              </div>
+
+              {/* Mileage */}
+              <div className="mb-6">
+                <div className="text-sm opacity-75">Mileage</div>
+                <div className="text-lg md:text-xl font-medium">250 Miles</div>
+              </div>
+
+              {/* Transmission */}
+              <div className="mb-6">
+                <div className="text-sm opacity-75">Transmission</div>
+                <div className="text-lg md:text-xl font-medium">Manual</div>
+              </div>
+
+              {/* Year */}
+              <div className="mb-8">
+                <div className="text-sm opacity-75">Year</div>
+                <div className="text-lg md:text-xl font-medium">2021</div>
+              </div>
+
+              {/* Learn More Button */}
+              <button className="w-full bg-white text-brand-dark rounded-2xl py-4 px-6 flex items-center justify-center gap-3 font-medium hover:bg-gray-50 transition-colors">
+                Learn More
+                <ArrowRightIcon />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Hero Navigation Dots */}
+        <div className="absolute bottom-8 md:bottom-20 left-1/2 transform -translate-x-1/2 flex gap-2">
+          <div className="w-6 md:w-8 h-1 bg-white rounded-full"></div>
+          <div className="w-3 md:w-4 h-1 bg-white/50 rounded-full"></div>
+          <div className="w-3 md:w-4 h-1 bg-white/50 rounded-full"></div>
+          <div className="w-3 md:w-4 h-1 bg-white/50 rounded-full"></div>
+        </div>
+      </section>
+
+      {/* Explore Vehicles Section */}
+      <section className="bg-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center mb-16">
+            <h2 className="text-4xl font-bold text-brand-dark">
+              Explore All Vehicles
+            </h2>
+            <button className="flex items-center gap-2 text-brand-dark font-medium hover:text-brand-blue transition-colors">
+              View All
+              <ArrowRightIcon />
+            </button>
+          </div>
+
+          {/* Tabs */}
+          <div className="flex gap-8 border-b border-brand-lightgray mb-12">
+            <button
+              className={`pb-4 px-2 font-medium relative ${
+                activeTab === "in-stock"
+                  ? "text-brand-dark border-b-2 border-brand-blue"
+                  : "text-brand-dark hover:text-brand-blue"
+              }`}
+              onClick={() => setActiveTab("in-stock")}
+            >
+              In Stock
+            </button>
+            <button
+              className={`pb-4 px-2 font-medium ${
+                activeTab === "new-cars"
+                  ? "text-brand-dark border-b-2 border-brand-blue"
+                  : "text-brand-dark hover:text-brand-blue"
+              }`}
+              onClick={() => setActiveTab("new-cars")}
+            >
+              New Cars
+            </button>
+            <button
+              className={`pb-4 px-2 font-medium ${
+                activeTab === "used-cars"
+                  ? "text-brand-dark border-b-2 border-brand-blue"
+                  : "text-brand-dark hover:text-brand-blue"
+              }`}
+              onClick={() => setActiveTab("used-cars")}
+            >
+              Used Cars
+            </button>
+          </div>
+
+          {/* Vehicle Cards */}
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            {/* Card 1 */}
+            <div className="bg-gray-800 rounded-2xl overflow-hidden">
+              <div className="flex flex-col md:flex-row">
+                <div className="w-full md:w-80 h-48 md:h-72">
+                  <img
+                    src="https://api.builder.io/api/v1/image/assets/TEMP/653cdc2e2a0a587ab9fe1d07de7dbfec422320e9?width=637"
+                    alt="T-Cross 2023"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1 p-6 md:p-8 text-white">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">
+                        T-Cross – 2023
+                      </h3>
+                      <p className="text-sm opacity-75">
+                        4.0 D5 PowerPulse Momentum 5dr AWD… Geartronic Estate
+                      </p>
+                    </div>
+                    <button className="bg-white/10 hover:bg-white/20 rounded-full p-3 transition-colors">
+                      <StarIcon />
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-4 mb-6 text-sm">
+                    <div>
+                      <div className="opacity-75">Mileage</div>
+                      <div>15 Miles</div>
+                    </div>
+                    <div>
+                      <div className="opacity-75">Fuel</div>
+                      <div>Petrol</div>
+                    </div>
+                    <div>
+                      <div className="opacity-75">Transmission</div>
+                      <div>CVT</div>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between items-center">
+                    <div className="text-2xl font-bold">$15,000</div>
+                    <button className="flex items-center gap-2 text-white hover:text-brand-blue transition-colors">
+                      View Details
+                      <ArrowRightIcon />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-gray-800 rounded-2xl overflow-hidden">
+              <div className="flex flex-col md:flex-row">
+                <div className="w-full md:w-80 h-48 md:h-72">
+                  <img
+                    src="https://api.builder.io/api/v1/image/assets/TEMP/bdfb1f15cf5774ccd56aa9ba0ed75881d3d1b08e?width=637"
+                    alt="C-Class 2023"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1 p-6 md:p-8 text-white">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">
+                        C-Class – 2023
+                      </h3>
+                      <p className="text-sm opacity-75">
+                        4.0 D5 PowerPulse Momentum 5dr AWD… Geartronic Estate
+                      </p>
+                    </div>
+                    <button className="bg-white/10 hover:bg-white/20 rounded-full p-3 transition-colors">
+                      <StarIcon />
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-4 mb-6 text-sm">
+                    <div>
+                      <div className="opacity-75">Mileage</div>
+                      <div>50 Miles</div>
+                    </div>
+                    <div>
+                      <div className="opacity-75">Fuel</div>
+                      <div>Petrol</div>
+                    </div>
+                    <div>
+                      <div className="opacity-75">Transmission</div>
+                      <div>Automatic</div>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between items-center">
+                    <div className="text-2xl font-bold">$150,000</div>
+                    <button className="flex items-center gap-2 text-white hover:text-brand-blue transition-colors">
+                      View Details
+                      <ArrowRightIcon />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation Arrows */}
+          <div className="flex gap-4">
+            <button className="w-16 h-12 border border-brand-lightgray rounded-full flex items-center justify-center hover:bg-brand-lightgray transition-colors">
+              <svg className="w-4 h-4" viewBox="0 0 12 13" fill="none">
+                <path
+                  d="M2.55859 6.31006C2.55859 6.07006 2.65193 5.87006 2.83859 5.71006L7.99859 0.550059C8.15859 0.390059 8.35193 0.310059 8.57859 0.310059C8.80526 0.310059 9.00526 0.390059 9.17859 0.550059C9.35193 0.710059 9.43859 0.910059 9.43859 1.15006C9.43859 1.39006 9.34526 1.59006 9.15859 1.75006L4.59859 6.31006L9.15859 10.8701C9.31859 11.0301 9.39859 11.2301 9.39859 11.4701C9.39859 11.7101 9.31859 11.9101 9.15859 12.0701C8.99859 12.2301 8.80526 12.3101 8.57859 12.3101C8.35193 12.3101 8.15859 12.2301 7.99859 12.0701L2.83859 6.91006C2.65193 6.75006 2.55859 6.55006 2.55859 6.31006Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+            <button className="w-16 h-12 border border-brand-lightgray rounded-full flex items-center justify-center hover:bg-brand-lightgray transition-colors">
+              <svg className="w-4 h-4" viewBox="0 0 12 13" fill="none">
+                <path
+                  d="M9.17652 6.91006L4.02083 12.0701C3.86096 12.2301 3.66779 12.3101 3.44131 12.3101C3.21484 12.3101 3.015 12.2301 2.84181 12.0701C2.66863 11.9101 2.58203 11.7101 2.58203 11.4701C2.58203 11.2301 2.67529 11.0301 2.8618 10.8701L7.41799 6.31006L2.8618 1.75006C2.67529 1.59006 2.58203 1.39006 2.58203 1.15006C2.58203 0.910059 2.66863 0.710059 2.84181 0.550059C3.015 0.390059 3.21484 0.310059 3.44131 0.310059C3.66779 0.310059 3.86096 0.390059 4.02083 0.550059L9.17652 5.71006C9.36303 5.87006 9.45628 6.07006 9.45628 6.31006C9.45628 6.55006 9.36303 6.75006 9.17652 6.91006Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="bg-brand-section py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-brand-dark mb-16 text-center">
+            Why Choose Us?
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                title: "Special Financing Offers",
+                description:
+                  "Our stress-free finance department that can find financial solutions to save you money.",
+                icon: "💳",
+              },
+              {
+                title: "Trusted Car Dealership",
+                description:
+                  "Our stress-free finance department that can find financial solutions to save you money.",
+                icon: "🛡️",
+              },
+              {
+                title: "Transparent Pricing",
+                description:
+                  "Our stress-free finance department that can find financial solutions to save you money.",
+                icon: "💎",
+              },
+              {
+                title: "Expert Car Service",
+                description:
+                  "Our stress-free finance department that can find financial solutions to save you money.",
+                icon: "🔧",
+              },
+            ].map((feature, index) => (
+              <div key={index} className="text-center">
+                <div className="text-5xl mb-6">{feature.icon}</div>
+                <h3 className="text-xl font-medium text-brand-dark mb-4">
+                  {feature.title}
+                </h3>
+                <p className="text-brand-dark opacity-75 leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Browse by Type Section */}
+      <section className="bg-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center mb-16">
+            <h2 className="text-4xl font-bold text-brand-dark">
+              Browse by Type
+            </h2>
+            <button className="flex items-center gap-2 text-brand-dark font-medium hover:text-brand-blue transition-colors">
+              View All
+              <ArrowRightIcon />
+            </button>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="relative rounded-2xl overflow-hidden h-96 group cursor-pointer">
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/4217251c4d9b8a5248c8eea973db5a580708afcd?width=1370"
+                alt="SUV"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute bottom-8 left-8">
+                <div className="bg-white rounded-full px-6 py-3 flex items-center gap-3">
+                  <span className="text-2xl">🚗</span>
+                  <span className="font-medium text-brand-dark">SUV</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative rounded-2xl overflow-hidden h-96 group cursor-pointer">
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/31cda6b9b7fbeb99dc94a5df052bf50fbd7560d0?width=1370"
+                alt="Sedan"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute bottom-8 left-8">
+                <div className="bg-white rounded-full px-6 py-3 flex items-center gap-3">
+                  <span className="text-2xl">🚙</span>
+                  <span className="font-medium text-brand-dark">Sedan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mt-8">
+            <div className="relative rounded-2xl overflow-hidden h-96 group cursor-pointer">
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/249bec6527ed8f586acd02557f8fd9b3fda278f3?width=893"
+                alt="Hatchback"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute bottom-8 left-8">
+                <div className="bg-white rounded-full px-6 py-3 flex items-center gap-3">
+                  <span className="text-2xl">🚘</span>
+                  <span className="font-medium text-brand-dark">Hatchback</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative rounded-2xl overflow-hidden h-96 group cursor-pointer">
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/e286292732e23ca14c0899d79cf2ccb5ede5df59?width=893"
+                alt="Hybrid"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute bottom-8 left-8">
+                <div className="bg-white rounded-full px-6 py-3 flex items-center gap-3">
+                  <span className="text-2xl">⚡</span>
+                  <span className="font-medium text-brand-dark">Hybrid</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Auto Loan Calculator Section */}
+      <section className="bg-brand-lightblue py-12 md:py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div>
+              <h2 className="text-2xl md:text-4xl font-bold text-brand-dark mb-6">
+                Auto Loan Calculator
+              </h2>
+              <p className="text-brand-dark mb-8 leading-relaxed">
+                Use this car payment calculator to estimate monthly payments on
+                your next new or used auto loan.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                <div>
+                  <label className="block text-sm text-brand-gray mb-2">
+                    Price ($)
+                  </label>
+                  <input
+                    type="text"
+                    value={calculatorValues.price}
+                    onChange={(e) =>
+                      setCalculatorValues({
+                        ...calculatorValues,
+                        price: e.target.value,
+                      })
+                    }
+                    className="w-full p-4 border border-brand-lightgray rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-blue"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm text-brand-gray mb-2">
+                    Interest Rate
+                  </label>
+                  <input
+                    type="text"
+                    value={calculatorValues.interestRate}
+                    onChange={(e) =>
+                      setCalculatorValues({
+                        ...calculatorValues,
+                        interestRate: e.target.value,
+                      })
+                    }
+                    className="w-full p-4 border border-brand-lightgray rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-blue"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm text-brand-gray mb-2">
+                    Loan Term (year)
+                  </label>
+                  <input
+                    type="text"
+                    value={calculatorValues.loanTerm}
+                    onChange={(e) =>
+                      setCalculatorValues({
+                        ...calculatorValues,
+                        loanTerm: e.target.value,
+                      })
+                    }
+                    className="w-full p-4 border border-brand-lightgray rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-blue"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm text-brand-gray mb-2">
+                    Down Payment
+                  </label>
+                  <input
+                    type="text"
+                    value={calculatorValues.downPayment}
+                    onChange={(e) =>
+                      setCalculatorValues({
+                        ...calculatorValues,
+                        downPayment: e.target.value,
+                      })
+                    }
+                    className="w-full p-4 border border-brand-lightgray rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-blue"
+                  />
+                </div>
+              </div>
+
+              <button className="w-full bg-brand-blue text-white py-4 rounded-2xl font-medium flex items-center justify-center gap-3 hover:bg-blue-700 transition-colors">
+                Calculate
+                <ArrowRightIcon />
+              </button>
+            </div>
+
+            <div className="relative">
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/5232ad159261160e567e25b266081c08f9e9bf5c?width=3600"
+                alt="Auto Loan Calculator"
+                className="w-full rounded-2xl"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Testimonials */}
+      <section className="bg-white py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-brand-dark mb-16">
+            What our customers say
+          </h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {[
+              {
+                name: "Ali Tufan",
+                title: "Sales process was simple and easy",
+                review:
+                  "Sales process was simple and easy. Maximillion was friendly and I didn't feel...",
+                rating: 5,
+              },
+              {
+                name: "John Doe",
+                title: "Good job for project",
+                review:
+                  "Sales process was simple and easy. Maximillion was friendly and I didn't feel...",
+                rating: 4,
+              },
+              {
+                name: "Brooklyn Simmons",
+                title: "Sales process was simple and easy",
+                review:
+                  "At Voiture what matters to us is making your car search and buying .",
+                rating: 2,
+              },
+              {
+                name: "Augusta Silva",
+                title: "Good job for project",
+                review:
+                  "Sales process was simple and easy. Maximillion was friendly and I didn't feel...",
+                rating: 5,
+              },
+            ].map((testimonial, index) => (
+              <div key={index} className="bg-brand-section p-6 rounded-2xl">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <div
+                        key={i}
+                        className={`w-4 h-4 rounded-sm flex items-center justify-center ${
+                          i < testimonial.rating
+                            ? "bg-green-500"
+                            : "bg-gray-300"
+                        }`}
+                      >
+                        <StarIcon />
+                      </div>
+                    ))}
+                  </div>
+                  <span className="text-sm text-brand-gray">Verified</span>
+                </div>
+
+                <h4 className="font-medium text-brand-dark mb-3">
+                  {testimonial.title}
+                </h4>
+                <p className="text-brand-dark text-sm mb-4 opacity-75">
+                  {testimonial.review}
+                </p>
+                <div className="font-medium text-brand-dark text-sm">
+                  {testimonial.name}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex gap-4 mt-8 justify-center">
+            <button className="w-16 h-12 border border-brand-lightgray rounded-full flex items-center justify-center hover:bg-brand-lightgray transition-colors">
+              <svg className="w-4 h-4" viewBox="0 0 12 13" fill="none">
+                <path
+                  d="M2.55859 6.75C2.55859 6.51 2.65193 6.31 2.83859 6.15L7.99859 0.990001C8.15859 0.83 8.35193 0.75 8.57859 0.75C8.80526 0.75 9.00526 0.83 9.17859 0.990001C9.35193 1.15 9.43859 1.35 9.43859 1.59C9.43859 1.83 9.34526 2.03 9.15859 2.19L4.59859 6.75L9.15859 11.31C9.31859 11.47 9.39859 11.67 9.39859 11.91C9.39859 12.15 9.31859 12.35 9.15859 12.51C8.99859 12.67 8.80526 12.75 8.57859 12.75C8.35193 12.75 8.15859 12.67 7.99859 12.51L2.83859 7.35C2.65193 7.19 2.55859 6.99 2.55859 6.75Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+            <button className="w-16 h-12 border border-brand-lightgray rounded-full flex items-center justify-center hover:bg-brand-lightgray transition-colors">
+              <svg className="w-4 h-4" viewBox="0 0 12 13" fill="none">
+                <path
+                  d="M9.17652 7.35L4.02083 12.51C3.86096 12.67 3.66779 12.75 3.44131 12.75C3.21484 12.75 3.015 12.67 2.84181 12.51C2.66863 12.35 2.58203 12.15 2.58203 11.91C2.58203 11.67 2.67529 11.47 2.8618 11.31L7.41799 6.75L2.8618 2.19C2.67529 2.03 2.58203 1.83 2.58203 1.59C2.58203 1.35 2.66863 1.15 2.84181 0.990001C3.015 0.83 3.21484 0.75 3.44131 0.75C3.66779 0.75 3.86096 0.83 4.02083 0.990001L9.17652 6.15C9.36303 6.31 9.45628 6.51 9.45628 6.75C9.45628 6.99 9.36303 7.19 9.17652 7.35Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile App Section */}
+      <section className="bg-brand-blue py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="text-white">
+              <h2 className="text-4xl font-bold mb-6 leading-tight">
+                Shop used cars, whether you're
+                <br />
+                on the lot or on the go
+              </h2>
+              <p className="mb-8 leading-relaxed opacity-90">
+                Download our app to save cars and create alerts, scan window
+                stickers on our lot for more details, and even call dibs on a
+                car by holding it for up to 7 days.
+              </p>
+              <div className="flex gap-4">
+                <button className="bg-white text-brand-blue px-6 py-4 rounded-2xl flex items-center gap-4 hover:bg-gray-50 transition-colors">
+                  <span className="text-2xl">📱</span>
+                  <div>
+                    <div className="text-xs">Download on the</div>
+                    <div className="font-medium">Apple Store</div>
+                  </div>
+                </button>
+                <button className="bg-white text-brand-blue px-6 py-4 rounded-2xl flex items-center gap-4 hover:bg-gray-50 transition-colors">
+                  <span className="text-2xl">🤖</span>
+                  <div>
+                    <div className="text-xs">Get it on</div>
+                    <div className="font-medium">Google Play</div>
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div className="relative">
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/7bc59e18964a9e937d45968ea9ae0d522bf0c3ef?width=3840"
+                alt="Mobile App"
+                className="w-full max-w-md mx-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Blog Posts */}
+      <section className="bg-white py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-brand-dark mb-16">
+            Latest Blog Posts
+          </h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                image:
+                  "https://api.builder.io/api/v1/image/assets/TEMP/27b77a83a860a8a41aef20258bb9827a81758ec3?width=894",
+                category: "Sound",
+                title:
+                  "2024 BMW ALPINA XB7 with exclusive details, extraordinary",
+                author: "admin",
+                date: "November 22, 2023",
+              },
+              {
+                image:
+                  "https://api.builder.io/api/v1/image/assets/TEMP/b12daaceb4211ae5d2d369d0d95e3fd54537e2e3?width=894",
+                category: "Accessories",
+                title: "BMW X6 M50i is designed to exceed your sportiest.",
+                author: "admin",
+                date: "November 22, 2023",
+              },
+              {
+                image:
+                  "https://api.builder.io/api/v1/image/assets/TEMP/e197123f030a68545c82381248ddb79c5c2964a4?width=894",
+                category: "Exterior",
+                title: "BMW X5 Gold 2024 Sport Review: Light on Sport",
+                author: "admin",
+                date: "November 22, 2023",
+              },
+            ].map((post, index) => (
+              <article key={index} className="group cursor-pointer">
+                <div className="relative rounded-2xl overflow-hidden mb-4">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-white px-4 py-2 rounded-full text-sm font-medium text-brand-dark">
+                      {post.category}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 text-sm text-brand-dark mb-3">
+                  <span>{post.author}</span>
+                  <div className="w-1 h-1 bg-gray-300 rounded-full"></div>
+                  <span>{post.date}</span>
+                </div>
+
+                <h3 className="text-xl font-medium text-brand-dark leading-tight group-hover:text-brand-blue transition-colors">
+                  {post.title}
+                </h3>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default HomePage;
