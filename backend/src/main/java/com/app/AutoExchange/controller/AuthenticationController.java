@@ -1,5 +1,6 @@
 package com.app.AutoExchange.controller;
 
+import com.app.AutoExchange.dto.request.VerifyRequest;
 import com.app.AutoExchange.service.AuthenticationService;
 import com.app.AutoExchange.dto.request.AuthenticationRequest;
 import com.app.AutoExchange.dto.request.RegisterRequest;
@@ -39,10 +40,10 @@ public class AuthenticationController {
         return ResponseEntity.ok(service.authenticate(request));
     }
 
-    @GetMapping("/verify")
-    public ResponseEntity<VerificationResponse> verifyAccount(@RequestParam("token") String token){
+    @PostMapping("/verify")
+    public ResponseEntity<VerificationResponse> verifyAccount(@Valid @RequestBody VerifyRequest request){
 
-        return  ResponseEntity.ok(service.verifyAccount(token));
+        return  ResponseEntity.ok(service.verifyAccount(request.getToken()));
     }
 
     @PostMapping("/resend-verification")

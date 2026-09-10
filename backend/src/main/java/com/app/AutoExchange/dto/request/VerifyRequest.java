@@ -16,8 +16,7 @@ public class VerifyRequest {
 
 
     @NotBlank(message = "Token is required")
-    @Size(min = 6, max = 6, message = "OTP is invalid")
-    @Pattern(regexp = "^[0-9]+$", message = "OTP must contain numbers only")
+    @Pattern(regexp = "^$|^[0-9]{5}$", message = "OTP must be an exact 6-digit number")
     private String token;
 
 }
