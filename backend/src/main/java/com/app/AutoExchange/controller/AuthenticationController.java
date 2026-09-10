@@ -1,5 +1,6 @@
 package com.app.AutoExchange.controller;
 
+import com.app.AutoExchange.dto.request.ResendTokenRequest;
 import com.app.AutoExchange.dto.request.VerifyRequest;
 import com.app.AutoExchange.service.AuthenticationService;
 import com.app.AutoExchange.dto.request.AuthenticationRequest;
@@ -47,9 +48,9 @@ public class AuthenticationController {
     }
 
     @PostMapping("/resend-verification")
-    public ResponseEntity<VerificationResponse> resendVerificationToken(@RequestParam("email") String email ) throws MessagingException {
+    public ResponseEntity<VerificationResponse> resendVerificationToken(@Valid @RequestBody ResendTokenRequest resendToken) throws MessagingException {
 
-        return ResponseEntity.ok(service.resendVerificationToken(email));
+        return ResponseEntity.ok(service.resendVerificationToken(resendToken.getEmail()));
     }
 
 

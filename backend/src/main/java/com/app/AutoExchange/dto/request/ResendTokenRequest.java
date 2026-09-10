@@ -1,7 +1,7 @@
 package com.app.AutoExchange.dto.request;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,11 +11,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class VerifyRequest {
+public class ResendTokenRequest {
 
-
-    @NotBlank(message = "Token is required")
-    @Pattern(regexp = "^$|^[0-9]{5}$", message = "OTP must be an exact 6-digit number")
-    private String token;
-
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format")
+    private String email;
 }
