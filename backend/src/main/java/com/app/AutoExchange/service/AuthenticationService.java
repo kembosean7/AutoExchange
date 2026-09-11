@@ -108,14 +108,12 @@ public class AuthenticationService {
 
         repository.save(user);
 
-        VerificationResponse response = VerificationResponse.builder()
+
+        return VerificationResponse.builder()
                 .msg("Account verified successfully")
                 .status("success")
                 .timestamp(LocalDateTime.now())
                 .build();
-
-
-        return response;
     }
 
     public VerificationResponse resendVerificationToken(String email) throws MessagingException {
