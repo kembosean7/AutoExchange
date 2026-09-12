@@ -28,6 +28,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final AuthEmailService emailService;
+    private final VerificationTokenService tokenService;
 
     public AuthenticationResponse signup(RegisterRequest request) throws MessagingException, IOException {
 
@@ -45,9 +46,9 @@ public class AuthenticationService {
                 .build();
 
 
-        String token = UUID.randomUUID().toString().replaceAll("[^0-9]", "").substring(0, 5);
+        String token = tokenService.generateVerificationCode();
         user.setVerificationToken(token);
-        user.setTokenExpiryDate(LocalDateTime.now().plusMinutes(20));
+        user.setTokenExpiryDate(tokenService.setTokenExpiryDate());
         user.setEnabled(false);
 
         repository.save(user);
@@ -108,7 +109,6 @@ public class AuthenticationService {
 
         repository.save(user);
 
-
         return VerificationResponse.builder()
                 .msg("Account verified successfully")
                 .status("success")
@@ -128,9 +128,9 @@ public class AuthenticationService {
 
         if(user.isVerified()) throw new AccountAlreadyVerifiedException("Account is already verified");
 
-        String newToken = UUID.randomUUID().toString().replaceAll("[^0-9]", "").substring(0, 5);
+        String newToken = tokenService.generateVerificationCode();
         user.setVerificationToken(newToken);
-        user.setTokenExpiryDate(LocalDateTime.now().plusMinutes(20));
+        user.setTokenExpiryDate(tokenService.setTokenExpiryDate());
 
         repository.save(user);
 

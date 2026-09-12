@@ -8,7 +8,7 @@ import java.util.UUID;
 @Service
 public class VerificationTokenService {
 
-    public String verificationToken(){
+    public String generateVerificationCode(){
         return UUID.randomUUID()
                 .toString()
                 .replaceAll("[^0-9]", "")
