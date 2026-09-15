@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
   firstName: '',
   lastName: '',
@@ -41,8 +44,9 @@ const SignUp = () => {
         setError(data.message || 'Signup failed');
       }
       else{
-        setSuccess('Signup successful!');
+        setSuccess('Signup successful! Redirecting to verification...');
         setForm({ firstName: '', lastName: '', email: '', password: '', confirmPassword: '' });
+        navigate('/verify', { state: { email: form.email } });
       }
       
     } catch (error) {

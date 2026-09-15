@@ -52,6 +52,15 @@ const App = () => (
             }
           />
           <Route
+            path="/dashboard"
+            element={
+              <>
+                <Navigation />
+                <Index />
+              </>
+            }
+          />
+          <Route
             path="/inventory"
             element={<><Navigation/> <Inventory/> </>}
           />

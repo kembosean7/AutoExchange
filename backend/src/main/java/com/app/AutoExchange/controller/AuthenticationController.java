@@ -5,6 +5,7 @@ import com.app.AutoExchange.dto.request.VerifyRequest;
 import com.app.AutoExchange.service.AuthenticationService;
 import com.app.AutoExchange.dto.request.AuthenticationRequest;
 import com.app.AutoExchange.dto.request.RegisterRequest;
+import com.app.AutoExchange.dto.request.ResendVerificationRequest;
 import com.app.AutoExchange.dto.response.AuthenticationResponse;
 import com.app.AutoExchange.dto.response.VerificationResponse;
 import jakarta.mail.MessagingException;
