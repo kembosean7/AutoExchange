@@ -14,7 +14,7 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:5173",
-                                        "https://glowing-computing-machine-9rvgx6prgprfx579-5173.app.github.dev")
+                                "https://glowing-computing-machine-9rvgx6prgprfx579-5175.app.github.dev")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
